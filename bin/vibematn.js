@@ -105,21 +105,66 @@ function cleanText(text, tone = 'formal') {
 }
 
 const args = process.argv.slice(2);
+
+// اجرای فرمان راه‌اندازی سریع در پروژه کاربر (init)
+if (args[0] === 'init') {
+  console.log('⚡ در حال راه‌اندازی قوانین وایب‌متن در پروژه شما...');
+  
+  const agentsContent = `# ضوابط متن فارسی وایب‌متن (VibeMatn Standard)
+مرجع آنلاین: https://vibematn.github.io/llms.txt
+
+۱. حذف افعال اداری فسیل:
+- استفاده از «می‌باشد»، «می‌گردد»، «به شمار می‌رود»، «محسوب می‌شود» و «تلقی می‌گردد» ممنوع است. فقط از «است»، «شد» و «کرد» استفاده شود.
+
+۲. حذف فیلرهای اعلامی و دیباچه‌ها:
+- «لازم به ذکر است»، «شایان ذکر است»، «نکته حائز اهمیت این است» و «در دنیای پرشتاب امروز» را کاملاً حذف کنید و مستقیماً اصل پیام را بنویسید.
+
+۳. دکمه‌ها و میکروکپی‌های کاربری:
+- برچسب دکمه‌ها باید نتیجه عمل باشند (ثبت‌نام، ورود، پرداخت، ذخیره، انصراف) نه دستورات لمسی مانند «کلیک کنید» یا «ارسال فرمایید».
+
+۴. پیام‌های خطا:
+- خطاها نباید کاربر را سرزنش کنند؛ ریشه مشکل و قدم عملی بعدی را به زبان ساده بیان کنید.
+
+۵. رسم‌الخط، ارقام و ارز:
+- نیم‌فاصله اجباری در می/نمی، جمع‌ها (ها) و صفت‌ها (تر/ترین).
+- ارقام داخل متن نمایشی باید فارسی (۰ تا ۹) و واحد پول تومان بعد از عدد با جداکننده هزارگان (٬) باشد.
+- استفاده از خط تیره بلند (ام‌دش) ممنوع است؛ از کامای فارسی (،) استفاده کنید.
+`;
+
+  try {
+    // ایجاد AGENTS.md
+    fs.writeFileSync('AGENTS.md', agentsContent, 'utf8');
+    console.log('✓ فایل AGENTS.md با موفقیت ساخته شد.');
+
+    // ایجاد پوشه .cursor/rules در صورت امکان
+    try {
+      if (!fs.existsSync('.cursor')) fs.mkdirSync('.cursor');
+      if (!fs.existsSync('.cursor/rules')) fs.mkdirSync('.cursor/rules');
+      fs.writeFileSync('.cursor/rules/vibematn.mdc', `---\nalwaysApply: true\ndescription: قوانین نگارش متن فارسی وایب‌متن\n---\n\n${agentsContent}`, 'utf8');
+      console.log('✓ قوانین هوش مصنوعی برای Cursor در .cursor/rules/vibematn.mdc ثبت شد.');
+    } catch (e) {}
+
+    console.log('\nآماده است! اکنون هوش مصنوعی (Cursor، Claude و ChatGPT) تمام متن‌های پروژه شما را انسان‌گونه و بر اساس استانداردهای وایب‌متن می‌نویسد.');
+  } catch (err) {
+    console.error('خطا در ایجاد فایل‌ها:', err.message);
+  }
+  process.exit(0);
+}
+
 if (args.length === 0 || args.includes('-h') || args.includes('--help')) {
   console.log(`
 وایب‌متن // VibeMatn CLI (نسخه 1.0.0)
 استاندارد پالایش و انسان‌سازی متون فارسی هوش مصنوعی
 توسعه‌دهنده: ریک سانچز (@m4tinbeigi)
 
-استفاده:
-  vibematn "متن مورد نظر شما"
-  vibematn --tone conversational "متن برای شبکه‌های اجتماعی"
-  vibematn --file path/to/file.md
+دستورات اصلی:
+  npx vibematn init                            راه‌اندازی فوری قوانین در پروژه (ساخت AGENTS.md و قوانین Cursor)
+  vibematn "متن مورد نظر شما"                 پالایش سریع یک متن در ترمینال
+  vibematn --tone conversational "متن"        پالایش با لحن محاوره‌ای
+  vibematn --file path/to/file.md              پالایش مستقیم یک فایل
 
-گزینه‌ها:
-  --tone [formal|conversational|ui-copy|cro]   انتخاب لحن خروجی
-  --file <path>                                پالایش مستقیم یک فایل
-  -h, --help                                   راهنما
+مرجع آنلاین:
+  https://vibematn.github.io/
 `);
   process.exit(0);
 }

@@ -311,62 +311,61 @@
     </div>
   </section>
 
-  <!-- بخش راهنمای عملی: اصلاح تمام متن‌های سایت شما با لینک و پرامپت هوش مصنوعی -->
+  <!-- بخش راهنمای عملی: سریع‌ترین روش اصلاح متن‌های پروژه شما -->
   <section id="guide" class="py-16 border-b border-white/[0.06] bg-slate-900/30 relative">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
       
       <div class="text-center mb-10">
-        <span class="text-xs text-vibeamber font-bold mb-2 inline-block">راهنمای عملی و پرامپت آماده</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-100 mb-3">چطور تمام متن‌های سایت را با هوش مصنوعی اصلاح کنیم؟</h2>
+        <span class="text-xs text-vibeamber font-bold mb-2 inline-block">سریع‌ترین راه بهبود متن‌های پروژه</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-100 mb-3">متن‌های پروژه را با یک پرامپت یا یک دستور ترمینال اصلاح کنید</h2>
         <p class="text-sm text-slate-400 leading-relaxed max-w-2xl mx-auto">
-          کافی است لینک سایت یا کدهای فرانت‌اند خود را به همراه پرامپت استاندارد زیر به Claude، ChatGPT یا Cursor بدهید تا کل محتوا، دکمه‌ها و پیام‌های خطا را با لحن انسانی بازنویسی کند.
+          نیازی به معرفی یا ثبت آدرس سایت خودتان ندارید. فقط کافی است مرجع وایب‌متن را به هوش مصنوعی پروژه‌تان معرفی کنید یا با دستور زیر مهارت‌ها را درجا دانلود کنید.
         </p>
       </div>
 
-      <!-- ۳ گام ساده -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-xs">
-        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/60">
-          <div class="w-6 h-6 rounded-full bg-vibeamber/20 text-vibeamber flex items-center justify-center font-bold mb-3">۱</div>
-          <h3 class="font-bold text-slate-200 mb-1">کپی پرامپت زیر</h3>
-          <p class="text-slate-400 leading-relaxed">روی دکمه «کپی پرامپت بازنویسی» در کادر پایین بزنید تا دستورالعمل کامل کپی شود.</p>
-        </div>
-
-        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/60">
-          <div class="w-6 h-6 rounded-full bg-vibeamber/20 text-vibeamber flex items-center justify-center font-bold mb-3">۲</div>
-          <h3 class="font-bold text-slate-200 mb-1">ارسال لینک سایت</h3>
-          <p class="text-slate-400 leading-relaxed">پرامپت را در چت قرار دهید و در انتهای آن بنویسید: «این هم آدرس سایت من: [لینک]».</p>
-        </div>
-
-        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/60">
-          <div class="w-6 h-6 rounded-full bg-vibeamber/20 text-vibeamber flex items-center justify-center font-bold mb-3">۳</div>
-          <h3 class="font-bold text-slate-200 mb-1">دریافت خروجی تمیز</h3>
-          <p class="text-slate-400 leading-relaxed">هوش مصنوعی صفحات را بازبینی کرده و تمام تیترها، فرم‌ها و افعال «می‌باشد» را بازنویسی می‌کند.</p>
-        </div>
-      </div>
-
-      <!-- باکس پرامپت ارجاع مستقیم به سایت -->
-      <div class="rounded-2xl border border-white/10 bg-slate-950 overflow-hidden shadow-2xl">
-        <div class="px-4 py-3 border-b border-white/[0.08] bg-slate-900/60 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-vibeamber"></span>
-            <span class="text-xs font-bold text-slate-300">پرامپت ارجاع مستقیم هوش مصنوعی به سایت وایب‌متن</span>
+      <!-- دو روش ساده در کنار هم -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 text-xs">
+        
+        <!-- روش ۱: پرامپت فوری چت -->
+        <div class="p-5 rounded-2xl border border-vibeamber/30 bg-vibeamber/5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-slate-100 text-sm">روش اول: پرامپت مستقیم به هوش مصنوعی</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-vibeamber/20 text-vibeamber font-medium">سریع‌ترین (چت)</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed mb-4">
+              این متن دو خطی را کپی کنید و در چت ChatGPT، Claude یا Cursor پروژه‌تان پیست کنید تا تمام فایل‌های پروژه را بر اساس وایب‌متن اصلاح کند:
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 border border-white/10 font-sans text-slate-200 leading-relaxed mb-4 select-all" id="instantPromptText">
+تمام فایل‌ها و متن‌های این پروژه را بخوان. سپس با مراجعه به استانداردهای https://vibematn.github.io/llms.txt تمام افعال فسیل اداری (می‌باشد/می‌گردد)، کلیشه‌ها و متون ماشینی را به زبان فارسی روان، انسانی و ترغیب‌کننده بازنویسی کن.
+            </div>
           </div>
-          <button id="sitePromptCopyBtn" onclick="copySitePrompt()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-vibeamber text-slate-950 font-bold text-xs hover:bg-vibeamberhover transition-all active:scale-95 shadow-sm">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-            <span id="sitePromptCopyLabel">کپی پرامپت اتصال به سایت</span>
+          <button onclick="copyInstantPrompt()" class="w-full py-2.5 rounded-xl bg-vibeamber text-slate-950 font-bold text-xs hover:bg-vibeamberhover transition-all flex items-center justify-center gap-2 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            <span id="instantPromptCopyLabel">کپی پرامپت فوری</span>
           </button>
         </div>
 
-        <pre id="sitePromptContent" class="p-4 sm:p-5 text-xs text-slate-300 leading-relaxed overflow-x-auto whitespace-pre-wrap font-sans select-all">وارد سایت https://vibematn.ir (یا فایل قوانین آن در https://vibematn.ir/llms.txt) شو.
-تمام قواعد نگارشی، جدول افعال فسیل، استانداردهای UX Writing و نمونه‌های دایره‌المعارف تبدیل متون ماشینی به انسانی وایب‌متن را مطالعه کن و به عنوان مرجع اصلی در نظر بگیر.
+        <!-- روش ۲: دستور ترمینال یک‌خطی -->
+        <div class="p-5 rounded-2xl border border-white/[0.08] bg-slate-900/60 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="font-bold text-slate-100 text-sm">روش دوم: دانلود خودکار مهارت‌ها</span>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-400 font-medium">پایدار در پروژه</span>
+            </div>
+            <p class="text-slate-400 leading-relaxed mb-4">
+              در ترمینال پروژه‌تان این تک‌دستور را اجرا کنید تا فایل‌های تنظیمات `AGENTS.md` و قوانین هوش مصنوعی برای Cursor خودکار ساخته شوند:
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950 border border-white/10 font-mono text-emerald-400 text-xs mb-4 flex items-center justify-between" dir="ltr">
+              <span>npx vibematn init</span>
+              <button onclick="copyInstallCmd('npx vibematn init', this)" class="text-slate-400 hover:text-white font-sans text-xs">کپی</button>
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-500 leading-5 pt-3 border-t border-white/[0.06]">
+            با این کار هوش مصنوعی در هر پرامپت بعدی، به صورت خودکار قوانین وایب‌متن را رعایت می‌کند و نیازی به یادآوری مجدد نیست.
+          </p>
+        </div>
 
-سپس صفحات، تگ‌ها یا متن‌های وب‌سایت من را بازبینی کن و موارد زیر را دقیقاً بر اساس سایت وایب‌متن اصلاح کن:
-۱. تمام افعال «می‌باشد»، «می‌گردد» و تعارفات اداری را به نثر طبیعی تبدیل کن.
-۲. کلیشه‌های آغازین و فیلرهای «لازم به ذکر است» را حذف کن.
-۳. دکمه‌ها و میکروکپی‌های کاربری را نتیجه‌محور کن.
-۴. نیم‌فاصله‌ها، ارقام فارسی و واحد تومان را اعمال کن و خط تیره بلند (ام‌دش) را حذف کن.
-
-آدرس وب‌سایت من برای بازنویسی: [اینجا آدرس سایتت رو بنویس]</pre>
       </div>
 
     </div>
@@ -854,6 +853,14 @@
       const label = document.getElementById('copyCleanText');
       label.innerText = 'کپی شد!';
       setTimeout(() => label.innerText = 'کپی خروجی', 2000);
+    }
+
+    function copyInstantPrompt() {
+      const text = document.getElementById('instantPromptText').innerText;
+      navigator.clipboard.writeText(text);
+      const label = document.getElementById('instantPromptCopyLabel');
+      label.innerText = 'پرامپت کپی شد!';
+      setTimeout(() => label.innerText = 'کپی پرامپت فوری', 2000);
     }
 
     function copySitePrompt() {
