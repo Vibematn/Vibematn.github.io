@@ -944,14 +944,6 @@
       setTimeout(() => label.innerText = 'کپی پرامپت فوری', 2000);
     }
 
-    function copySitePrompt() {
-      const text = document.getElementById('sitePromptContent').innerText;
-      navigator.clipboard.writeText(text);
-      const label = document.getElementById('sitePromptCopyLabel');
-      label.innerText = 'پرامپت کپی شد!';
-      setTimeout(() => label.innerText = 'کپی پرامپت بازنویسی', 2000);
-    }
-
     function copyAgentsMd() {
       const text = document.getElementById('agentsContentBlock').innerText;
       navigator.clipboard.writeText(text);
@@ -1022,6 +1014,17 @@
       }
     });
 
+    // تابع دریافت آدرس پایه پویا بر اساس دامنه لایو سایت
+    function getVibeMatnBaseUrl() {
+      if (typeof window !== 'undefined' && window.location && window.location.origin) {
+        if (window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')) {
+          return window.location.origin;
+        }
+        return window.location.origin.replace(/\/$/, '');
+      }
+      return 'https://vibematn.github.io';
+    }
+
     // سازنده هوشمند پرامپت اختصاصی پروژه (Wizard Logic)
     let wizardState = {
       domain: 'saas',
@@ -1043,6 +1046,14 @@
       const out = document.getElementById('wizardPromptOutput');
       if (!out) return;
 
+      const baseUrl = getVibeMatnBaseUrl();
+
+      // بروزرسانی پرامپت فوری دوخطی سکشن راهنما نیز با همین آدرس
+      const instantEl = document.getElementById('instantPromptText');
+      if (instantEl) {
+        instantEl.innerText = `تمام فایل‌ها و متن‌های این پروژه را بخوان. سپس با مراجعه به استانداردهای ${baseUrl}/llms.txt تمام افعال فسیل اداری (می‌باشد/می‌گردد)، کلیشه‌ها و متون ماشینی را به زبان فارسی روان، انسانی و ترغیب‌کننده بازنویسی کن.`;
+      }
+
       const domainSkills = {
         saas: 'site-rewriter.md و conversion-copywriting.md',
         shop: 'product-lexicon.md و fintech-checkout.md',
@@ -1062,7 +1073,7 @@
       };
 
       const prompt = `تمام فایل‌ها و متن‌های موجود در این پروژه را بررسی کن.
-سپس با مراجعه به استانداردهای رسمی وایب‌متن در آدرس https://vibematn.github.io/llms.txt و مطالعه مهارت‌های تخصصی https://vibematn.github.io/skills/${domainSkills[wizardState.domain] || 'site-rewriter.md'}، متن‌ها را بازنویسی و اصلاح کن.
+سپس با مراجعه به استانداردهای رسمی وایب‌متن در آدرس ${baseUrl}/llms.txt و مطالعه مهارت‌های تخصصی ${baseUrl}/skills/${domainSkills[wizardState.domain] || 'site-rewriter.md'}، متن‌ها را بازنویسی و اصلاح کن.
 
 دستورالعمل‌های اختصاصی این پروژه:
 ۱. انضباط لحن: ${toneInstructions[wizardState.tone]}
