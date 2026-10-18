@@ -111,8 +111,8 @@
       <!-- ناوبری دسکتاپ خلوت -->
       <nav class="hidden md:flex items-center gap-7 text-[13px] font-medium text-slate-400">
         <a href="#playground" class="hover:text-vibeamber transition-colors">پلی‌گراند زنده</a>
-        <a href="#guide" class="hover:text-vibeamber transition-colors">راهنمای اصلاح کل سایت</a>
-        <a href="#corpus" class="hover:text-vibeamber transition-colors">دایره‌المعارف</a>
+        <a href="#wizard" class="hover:text-vibeamber transition-colors">سازنده پرامپت</a>
+        <a href="#guide" class="hover:text-vibeamber transition-colors">راهنمای پروژه</a>
         <a href="#skills" class="hover:text-vibeamber transition-colors">مهارت‌ها</a>
         <a href="#rules" class="hover:text-vibeamber transition-colors">قوانین</a>
       </nav>
@@ -306,6 +306,87 @@
           </div>
         </div>
 
+      </div>
+
+    </div>
+  </section>
+
+  <!-- بخش سازنده هوشمند پرامپت اختصاصی پروژه (Custom Prompt Wizard) -->
+  <section id="wizard" class="py-16 border-b border-white/[0.06] bg-slate-900/40 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center mb-10">
+        <span class="text-xs text-vibeamber font-bold mb-2 inline-block">سازنده هوشمند پرامپت اختصاصی پروژه</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-100 mb-3">پرامپت اختصاصی اصلاح سایتت رو در چند ثانیه بساز</h2>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-2xl mx-auto">
+          مشخصات و لحن دلخواهت رو انتخاب کن تا وایب‌متن دقیق‌ترین پرامپت متصل به مهارت‌های مرتبط با پروژه‌ات رو بسازه.
+        </p>
+      </div>
+
+      <!-- کارت تعاملی فرم سوالات -->
+      <div class="p-6 rounded-2xl border border-white/10 bg-slate-950/80 shadow-2xl mb-8 space-y-6 text-xs">
+        
+        <!-- سوال ۱: نوع و حوزه پروژه -->
+        <div>
+          <label class="block font-bold text-slate-200 mb-2.5 text-sm">۱. حوزه و زمینه فعالیت پروژه شما چیه؟</label>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="wzDomainOptions">
+            <button type="button" onclick="selectWizardOption('domain', 'saas', this)" class="wz-opt-domain p-3 rounded-xl border border-vibeamber bg-vibeamber/10 text-vibeamber font-bold text-center transition-all">استارتاپ و SaaS</button>
+            <button type="button" onclick="selectWizardOption('domain', 'shop', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-center transition-all">فروشگاه آنلاین</button>
+            <button type="button" onclick="selectWizardOption('domain', 'fintech', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-center transition-all">صرافی و فین‌تک</button>
+            <button type="button" onclick="selectWizardOption('domain', 'services', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-center transition-all">سفر، سلامت یا خدمات</button>
+          </div>
+        </div>
+
+        <!-- سوال ۲: لحن نگارش -->
+        <div>
+          <label class="block font-bold text-slate-200 mb-2.5 text-sm">۲. چه لحنی برای متن‌ها می‌پسندید؟</label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="wzToneOptions">
+            <button type="button" onclick="selectWizardOption('tone', 'formal', this)" class="wz-opt-tone p-3 rounded-xl border border-vibeamber bg-vibeamber/10 text-vibeamber font-bold text-start transition-all">
+              <span class="block text-sm mb-1">رسمی اما زنده</span>
+              <span class="text-[11px] text-slate-400 font-normal">است به‌جای می‌باشد، فاکتور، سازمانی، بدون تعارف</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('tone', 'conversational', this)" class="wz-opt-tone p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
+              <span class="block text-sm mb-1 text-slate-200">صمیمی و خودمونی</span>
+              <span class="text-[11px] text-slate-400 font-normal">میشه، می‌خوام، رو، مناسب سوشال، چت و اپلیکیشن</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('tone', 'cro', this)" class="wz-opt-tone p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
+              <span class="block text-sm mb-1 text-slate-200">کپی‌رایتینگ فروش</span>
+              <span class="text-[11px] text-slate-400 font-normal">ارزش پیشنهادی ملموس، رفع تردید خریدار، به تومان</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- سوال ۳: سطح تغییرات -->
+        <div>
+          <label class="block font-bold text-slate-200 mb-2.5 text-sm">۳. شدت بازنویسی چقدر باشد؟</label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="wzScopeOptions">
+            <button type="button" onclick="selectWizardOption('scope', 'deep', this)" class="wz-opt-scope p-3 rounded-xl border border-vibeamber bg-vibeamber/10 text-vibeamber font-bold text-start transition-all">
+              <span class="block text-sm mb-0.5">بازنویسی عمیق و ریشه‌ای</span>
+              <span class="text-[11px] text-slate-400 font-normal">خرد کردن جملات بلند، تغییر تیترها و بهینه‌سازی دکمه‌ها و خطاها</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('scope', 'cleanup', this)" class="wz-opt-scope p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
+              <span class="block text-sm mb-0.5 text-slate-200">فقط پالایش املایی و حذف فسیل‌ها</span>
+              <span class="text-[11px] text-slate-400 font-normal">حفظ جملات و فقط حذف می‌باشد، نیم‌فاصله‌سازی و اعداد فارسی</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- جعبه خروجی پرامپت هوشمند ساخته‌شده -->
+      <div class="rounded-2xl border border-vibeamber/30 bg-slate-950 overflow-hidden shadow-2xl">
+        <div class="px-4 py-3 border-b border-white/[0.08] bg-slate-900/80 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-vibeamber animate-pulse"></span>
+            <span class="text-xs font-bold text-slate-200">پرامپت نهایی تولیدشده برای هوش مصنوعی شما</span>
+          </div>
+          <button id="wizardPromptCopyBtn" onclick="copyWizardPrompt()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-vibeamber text-slate-950 font-bold text-xs hover:bg-vibeamberhover transition-all active:scale-95 shadow-sm">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            <span id="wizardPromptCopyLabel">کپی پرامپت اختصاصی</span>
+          </button>
+        </div>
+
+        <pre id="wizardPromptOutput" class="p-4 sm:p-5 text-xs text-slate-200 leading-relaxed overflow-x-auto whitespace-pre-wrap font-sans select-all"></pre>
       </div>
 
     </div>
@@ -940,6 +1021,69 @@
         closeCommandPalette();
       }
     });
+
+    // سازنده هوشمند پرامپت اختصاصی پروژه (Wizard Logic)
+    let wizardState = {
+      domain: 'saas',
+      tone: 'formal',
+      scope: 'deep'
+    };
+
+    function selectWizardOption(group, val, btn) {
+      wizardState[group] = val;
+      const selectorClass = `wz-opt-${group}`;
+      document.querySelectorAll(`.${selectorClass}`).forEach(b => {
+        b.className = `${selectorClass} p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all`;
+      });
+      btn.className = `${selectorClass} p-3 rounded-xl border border-vibeamber bg-vibeamber/10 text-vibeamber font-bold text-start transition-all`;
+      generateWizardPrompt();
+    }
+
+    function generateWizardPrompt() {
+      const out = document.getElementById('wizardPromptOutput');
+      if (!out) return;
+
+      const domainSkills = {
+        saas: 'site-rewriter.md و conversion-copywriting.md',
+        shop: 'product-lexicon.md و fintech-checkout.md',
+        fintech: 'fintech-checkout.md و product-lexicon.md',
+        services: 'error-handling.md و site-rewriter.md'
+      };
+
+      const toneInstructions = {
+        formal: 'لحن خروجی باید کاملاً رسمی، اداری اما زنده و انسان‌گونه باشد (استفاده قطعی از «است» به‌جای «می‌باشد»، جملات کوتاه و صریح، بدون کلمات عربی فسیل).',
+        conversational: 'لحن خروجی باید صمیمی، محاوره‌ای و گرم باشد (استفاده از افعال گفتاری بومی نظیر میشه، می‌خوام، رو و رعایت دقیق تله هکسره).',
+        cro: 'لحن خروجی بر اساس اصول کپی‌رایتینگ فروش و نرخ تبدیل باشد (تیترهای ارزش‌محور، سنجه‌های عددی ملموس، رفع تردید خریدار و ارقام به تومان).'
+      };
+
+      const scopeInstructions = {
+        deep: 'تمام متن‌ها، تیترهای هیرو، دکمه‌های اقدام (CTA)، پیام‌های خطا و توضیحات را به صورت ریشه‌ای خرد و بازنویسی کن و خروجی را در یک جدول قبل و بعد تحویل بده.',
+        cleanup: 'استخوان‌بندی و ساختار جملات را حفظ کن؛ فقط افعال فسیل (می‌باشد/می‌گردد)، فیلرها (لازم به ذکر است)، نیم‌فاصله‌ها و ارقام فارسی را اصلاح کن.'
+      };
+
+      const prompt = `تمام فایل‌ها و متن‌های موجود در این پروژه را بررسی کن.
+سپس با مراجعه به استانداردهای رسمی وایب‌متن در آدرس https://vibematn.github.io/llms.txt و مطالعه مهارت‌های تخصصی https://vibematn.github.io/skills/${domainSkills[wizardState.domain] || 'site-rewriter.md'}، متن‌ها را بازنویسی و اصلاح کن.
+
+دستورالعمل‌های اختصاصی این پروژه:
+۱. انضباط لحن: ${toneInstructions[wizardState.tone]}
+۲. عمق بازنویسی: ${scopeInstructions[wizardState.scope]}
+۳. خط قرمزها: حذف کامل افعال «می‌باشد» و «می‌گردد»، حذف فیلرهای «لازم به ذکر است»، عدم استفاده از خط تیره بلند (ام‌دش)، نیم‌فاصله اجباری و نمایش قیمت‌ها منحصراً به «تومان».
+
+حالا کار را شروع کن و متن‌های اصلاح‌شده را تحویل بده.`;
+
+      out.innerText = prompt;
+    }
+
+    function copyWizardPrompt() {
+      const text = document.getElementById('wizardPromptOutput').innerText;
+      navigator.clipboard.writeText(text);
+      const label = document.getElementById('wizardPromptCopyLabel');
+      label.innerText = 'پرامپت اختصاصی کپی شد!';
+      setTimeout(() => label.innerText = 'کپی پرامپت اختصاصی', 2000);
+    }
+
+    // فراخوانی در بارگذاری اولیه
+    generateWizardPrompt();
 
     loadData();
   </script>
