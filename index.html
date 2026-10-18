@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>وایب‌متن // استاندارد پالایش و نگارش متن فارسی هوش مصنوعی</title>
+  <meta name="description" content="پلتفرم استانداردسازی، یوایکس رایتینگ و پاکسازی متون هوش مصنوعی بر پایه دیزاین سیستم وایب‌فارسی.">
+  
+  <!-- فونت‌های فارسی معتبر Google Fonts بر مبنای پروژه FontWoW -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600;700&family=Estedad:wght@300;400;600;700;800&family=Katibeh&family=Lalezar&family=Readex+Pro:wght@300;400;600;700&family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Vazirmatn', 'system-ui', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace']
+          },
+          colors: {
+            vibebg: '#090a0c',
+            vibesurface: '#111317',
+            vibehover: '#181b21',
+            vibeborder: 'rgba(255, 255, 255, 0.08)',
+            vibeamber: '#ff8a1e',
+            vibeamberhover: '#ff9d3b'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --bg: #090a0c;
+      --card: #111317;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-hover: rgba(255, 255, 255, 0.16);
+      --brand: #ff8a1e;
+      --brand-glow: rgba(255, 138, 30, 0.15);
+    }
+    body {
+      background-color: var(--bg);
+      color: #f7f7f8;
+      font-family: 'Vazirmatn', sans-serif;
+      letter-spacing: 0 !important;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+    * {
+      letter-spacing: 0 !important;
+    }
+    h1, h2, h3, h4 {
+      line-height: 1.35 !important;
+    }
+    .technical-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+    .glass-header {
+      background: rgba(9, 10, 12, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .diff-del {
+      background-color: rgba(244, 63, 94, 0.12);
+      color: #fca5a5;
+      border: 1px solid rgba(244, 63, 94, 0.25);
+      text-decoration: line-through;
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin: 1px 2px;
+      display: inline-block;
+      font-size: 0.9em;
+    }
+    .diff-ins {
+      background-color: rgba(255, 138, 30, 0.12);
+      color: #ffb066;
+      border: 1px solid rgba(255, 138, 30, 0.3);
+      border-radius: 4px;
+      padding: 1px 6px;
+      margin: 1px 2px;
+      display: inline-block;
+      font-size: 0.9em;
+    }
+    .tab-active {
+      background: rgba(255, 138, 30, 0.15) !important;
+      color: #ffb066 !important;
+      border-color: rgba(255, 138, 30, 0.35) !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-amber-500/20 selection:text-amber-300">
+
+  <!-- هدر خلوت و سبک بر مبنای وایب‌فارسی -->
+  <header class="glass-header sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+      
+      <!-- لوگو و برند -->
+      <a href="/" class="flex items-center gap-2.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-vibeamber shadow-[0_0_12px_var(--vibeamber)]"></span>
+        <span class="font-extrabold text-base tracking-tight text-slate-100">وایب‌متن</span>
+      </a>
+
+      <!-- ناوبری دسکتاپ خلوت -->
+      <nav class="hidden md:flex items-center gap-7 text-[13px] font-medium text-slate-400">
+        <a href="#playground" class="hover:text-vibeamber transition-colors">پلی‌گراند زنده</a>
+        <a href="#guide" class="hover:text-vibeamber transition-colors">راهنمای اصلاح کل سایت</a>
+        <a href="#corpus" class="hover:text-vibeamber transition-colors">دایره‌المعارف</a>
+        <a href="#skills" class="hover:text-vibeamber transition-colors">مهارت‌ها</a>
+        <a href="#rules" class="hover:text-vibeamber transition-colors">قوانین</a>
+      </nav>
+
+      <!-- اکشن‌های سمت چپ -->
+      <div class="flex items-center gap-2">
+        <!-- کلید جست‌وجو ⌘K -->
+        <button onclick="openCommandPalette()" class="inline-flex items-center gap-2 px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-900/80 text-slate-400 border border-white/10 hover:border-white/20 hover:text-slate-200 transition-all active:scale-95">
+          <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <span class="hidden sm:inline">جست‌وجو</span>
+          <kbd class="px-1.5 py-0.2 text-[10px] font-mono rounded bg-slate-800 text-slate-400 border border-slate-700" dir="ltr">⌘K</kbd>
+        </button>
+
+        <a href="https://x.com/m4tinbeigi" target="_blank" rel="noopener" class="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-900/80 text-slate-300 border border-white/10 hover:border-white/20 transition-all active:scale-95" title="توییتر ریک سانچز">
+          <span class="font-mono" dir="ltr">@m4tinbeigi</span>
+        </a>
+
+        <a href="#playground" class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-lg bg-vibeamber text-slate-950 hover:bg-vibeamberhover transition-all active:scale-95 shadow-sm shadow-amber-500/20">
+          <span>شروع</span>
+          <svg class="w-3 h-3 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+
+        <!-- دکمه منوی موبایل -->
+        <button onclick="toggleMobileMenu()" class="inline-flex md:hidden p-1.5 rounded-lg bg-slate-900 border border-white/10 text-slate-400 hover:text-slate-100" aria-label="منوی موبایل">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- منوی کشویی موبایل -->
+  <div id="mobileDrawer" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex flex-col justify-between p-6 transition-all" onclick="toggleMobileMenu()">
+    <div class="flex flex-col space-y-6" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between pb-4 border-b border-white/[0.08]">
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-vibeamber"></span>
+          <span class="text-slate-100 font-bold text-sm">وایب‌متن</span>
+        </div>
+        <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-400 hover:text-slate-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <nav class="flex flex-col space-y-3 text-sm font-medium text-slate-300">
+        <a href="#playground" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-900">پلی‌گراند زنده</a>
+        <a href="#corpus" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-900">دایره‌المعارف تبدیل AI</a>
+        <a href="#skills" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-900">مهارت‌های وایب‌فارسی</a>
+        <a href="#rules" onclick="toggleMobileMenu()" class="p-2 rounded-lg hover:bg-slate-900">قوانین نگارش</a>
+      </nav>
+    </div>
+
+    <div class="pt-6 border-t border-white/[0.08] flex items-center justify-between text-xs text-slate-400" onclick="event.stopPropagation()">
+      <a href="https://x.com/m4tinbeigi" target="_blank" rel="noopener" class="text-slate-300 font-mono" dir="ltr">@m4tinbeigi</a>
+      <a href="https://github.com/m4tinbeigi-official" target="_blank" rel="noopener" class="text-slate-300 font-mono" dir="ltr">GitHub</a>
+    </div>
+  </div>
+
+  <!-- بخش معرفی اصلی (Hero): خلوت، مقتدر و با پالت اصیل وایب‌فارسی -->
+  <section class="relative technical-grid border-b border-white/[0.06] overflow-hidden pt-16 pb-20 sm:pt-24 sm:pb-24">
+    <!-- هاله گرم کهربایی وایب‌فارسی -->
+    <div aria-hidden="true" class="pointer-events-none absolute left-1/2 top-1/2 -z-10 size-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-vibeamber/10 blur-[120px]"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+      
+      <!-- بج وضعیت -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-white/10 text-slate-300 text-xs font-medium mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-vibeamber animate-pulse"></span>
+        <span>v1 · رایگان و متن‌باز</span>
+        <span class="text-slate-600">|</span>
+        <span class="text-slate-400">استاندارد پاک‌سازی متن هوش مصنوعی</span>
+      </div>
+
+      <!-- تیتر اصلی با فونت بزرگ و خطوط باز -->
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-100 leading-[1.4] mb-6">
+        متن‌های هوش مصنوعی را<br class="hidden sm:inline">
+        <span class="text-transparent bg-clip-text bg-gradient-to-l from-amber-400 via-orange-300 to-amber-100">به زبان آدمیزاد</span> بنویسید
+      </h1>
+
+      <p class="max-w-xl mx-auto text-sm sm:text-base text-slate-400 leading-8 mb-8">
+        حذف بیماری «می‌باشد»، شکستن جملات کلیشه‌ای اداری، نیم‌فاصله خودکار و کپی‌رایتینگ سرراست با استانداردهای رسمی وایب‌فارسی.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href="#playground" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-vibeamber text-slate-950 font-bold text-xs hover:bg-vibeamberhover transition-all active:scale-95 shadow-md shadow-amber-500/20">
+          <span>امتحان پلی‌گراند</span>
+          <svg class="w-3.5 h-3.5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+        <button onclick="copyAgentsMd()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-900 text-slate-300 border border-white/10 font-mono text-xs hover:border-white/20 transition-all active:scale-95" dir="ltr">
+          <span class="text-vibeamber">$</span> npx vibefarsi add agents-md-persian
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- پلی‌گراند تعاملی (Playground): تمیز، کالیبره‌شده و بدون شلوغی -->
+  <section id="playground" class="py-14 border-b border-white/[0.06] bg-vibesurface/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="text-[11px] text-vibeamber font-bold mb-1 block">پالایش بلادرنگ متن</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-100">پلی‌گراند پالایش متن</h2>
+        </div>
+
+        <!-- تب‌های سوئیچ سه تایی -->
+        <div class="inline-flex items-center p-1 rounded-lg bg-slate-900 border border-white/10 text-xs">
+          <button id="viewTabDiff" onclick="setPlaygroundView('diff')" class="tab-active px-3 py-1 rounded font-semibold text-slate-300 transition-all">پیش‌نمایش تفاوت</button>
+          <button id="viewTabClean" onclick="setPlaygroundView('clean')" class="px-3 py-1 rounded text-slate-400 hover:text-slate-200 transition-all">متن تمیز</button>
+          <button id="viewTabSplit" onclick="setPlaygroundView('split')" class="px-3 py-1 rounded text-slate-400 hover:text-slate-200 transition-all">مقایسه دوطرفه</button>
+        </div>
+      </div>
+
+      <!-- نوار لحن، فونت و نمونه‌ها در یک ردیف تمیز -->
+      <div class="p-3 rounded-xl bg-slate-900/60 border border-white/[0.08] mb-5 flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="text-slate-400 me-1">لحن:</span>
+          <button id="toneBtnFormal" onclick="setTone('formal')" class="tone-btn px-2.5 py-1 rounded bg-vibeamber text-slate-950 font-bold transition-all">رسمی</button>
+          <button id="toneBtnConversational" onclick="setTone('conversational')" class="tone-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition-all">محاوره‌ای</button>
+          <button id="toneBtnUiCopy" onclick="setTone('ui-copy')" class="tone-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition-all">میکروکپی</button>
+
+          <!-- انتخاب‌گر فونت‌های فارسی برگرفته از FontWoW -->
+          <span class="text-slate-600 mx-1">|</span>
+          <span class="text-slate-400">قلم متن:</span>
+          <select id="fontFamilySelector" onchange="changeFontFamily(this.value)" class="bg-slate-900 text-slate-200 border border-slate-700 rounded px-2 py-0.5 text-xs outline-none focus:border-vibeamber transition-colors cursor-pointer">
+            <option value="'Vazirmatn', sans-serif" selected>وزیرمتن (استاندارد وب)</option>
+            <option value="'Estedad', sans-serif">استعداد (مدرن و هندسی)</option>
+            <option value="'Readex Pro', sans-serif">ریدکس پرو (مینیمال و تکنولوژی)</option>
+            <option value="'Lalezar', cursive">لاله‌زار (ضخیم و استوری)</option>
+            <option value="'Katibeh', cursive">کتیبه (اصیل و سنتی)</option>
+            <option value="'El Messiri', sans-serif">المسیری (کلاسیک و اداری)</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-1.5 text-slate-400 font-mono text-[11px]">
+            <span>شاخص اصالت:</span>
+            <span id="humanScoreVal" class="text-vibeamber font-bold text-sm">۱۰۰٪</span>
+          </div>
+          <button onclick="loadSampleText('ai')" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-all">درج نمونه ماشینی</button>
+        </div>
+      </div>
+
+      <!-- کادر ادیتور و تفاوت -->
+      <div id="playgroundEditorsGrid" class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        
+        <!-- ورودی خام -->
+        <div class="bg-slate-900/70 rounded-xl border border-white/[0.08] p-4 flex flex-col">
+          <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06] text-xs text-slate-400">
+            <span class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-rose-400"></span>
+              ورودی متن خام
+            </span>
+            <span id="inputCharCount" class="font-mono text-slate-500 tabular-numbers">۰ کاراکتر</span>
+          </div>
+          <textarea id="rawInput" placeholder="متن دارای کلمات ماشینی (مانند می‌باشد، لازم به ذکر است...) را اینجا بنویسید..." class="w-full h-56 bg-transparent text-slate-200 text-sm leading-relaxed outline-none resize-none placeholder:text-slate-600 font-sans"></textarea>
+          <div class="pt-2 mt-auto border-t border-white/[0.06] flex justify-between text-[11px] text-slate-500">
+            <span>اجرای بلادرنگ روی مرورگر</span>
+            <button onclick="resetPlayground()" class="hover:text-rose-400">پاک کردن</button>
+          </div>
+        </div>
+
+        <!-- خروجی تفاوت / تمیز -->
+        <div class="bg-slate-900/70 rounded-xl border border-white/[0.08] p-4 flex flex-col">
+          <div class="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06] text-xs text-slate-400">
+            <span class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-vibeamber"></span>
+              <span id="outputTitleLabel">پیش‌نمایش تفاوت هوشمند (Diff)</span>
+            </span>
+            <button id="copyCleanBtn" onclick="copyCleanOutput(this)" class="inline-flex items-center gap-1 text-vibeamber hover:text-amber-300 font-medium text-xs">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              <span id="copyCleanText">کپی خروجی</span>
+            </button>
+          </div>
+
+          <div id="diffViewContainer" class="w-full h-56 overflow-y-auto text-slate-200 text-sm leading-relaxed select-text p-2 rounded-lg bg-black/20">
+            <span class="text-slate-600">متن پالایش‌شده پس از ورود متن نمایش داده می‌شود.</span>
+          </div>
+
+          <div id="cleanViewContainer" class="hidden w-full h-56 overflow-y-auto text-slate-200 text-sm leading-relaxed select-text p-2 rounded-lg bg-black/20">
+            <span class="text-slate-600">متن تمیز نهایی اینجا نمایش داده می‌شود.</span>
+          </div>
+
+          <div class="pt-2 mt-auto border-t border-white/[0.06] flex items-center justify-between text-[11px] text-slate-400">
+            <div class="flex items-center gap-3">
+              <span>خطاها: <strong id="statBadFound" class="text-rose-400 font-mono">۰</strong></span>
+              <span>اصلاحات: <strong id="statFixes" class="text-vibeamber font-mono">۰</strong></span>
+            </div>
+            <span class="text-slate-500 text-[11px]">پردازش آنی کلاینت</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- بخش راهنمای عملی: اصلاح تمام متن‌های سایت شما با لینک و پرامپت هوش مصنوعی -->
+  <section id="guide" class="py-16 border-b border-white/[0.06] bg-slate-900/30 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center mb-10">
+        <span class="text-xs text-vibeamber font-bold mb-2 inline-block">راهنمای عملی و پرامپت آماده</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-100 mb-3">چطور تمام متن‌های سایت را با هوش مصنوعی اصلاح کنیم؟</h2>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-2xl mx-auto">
+          کافی است لینک سایت یا کدهای فرانت‌اند خود را به همراه پرامپت استاندارد زیر به Claude، ChatGPT یا Cursor بدهید تا کل محتوا، دکمه‌ها و پیام‌های خطا را با لحن انسانی بازنویسی کند.
+        </p>
+      </div>
+
+      <!-- ۳ گام ساده -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-xs">
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/60">
+          <div class="w-6 h-6 rounded-full bg-vibeamber/20 text-vibeamber flex items-center justify-center font-bold mb-3">۱</div>
+          <h3 class="font-bold text-slate-200 mb-1">کپی پرامپت زیر</h3>
+          <p class="text-slate-400 leading-relaxed">روی دکمه «کپی پرامپت بازنویسی» در کادر پایین بزنید تا دستورالعمل کامل کپی شود.</p>
+        </div>
+
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/60">
+          <div class="w-6 h-6 rounded-full bg-vibeamber/20 text-vibeamber flex items-center justify-center font-bold mb-3">۲</div>
+          <h3 class="font-bold text-slate-200 mb-1">ارسال لینک سایت</h3>
+          <p class="text-slate-400 leading-relaxed">پرامپت را در چت قرار دهید و در انتهای آن بنویسید: «این هم آدرس سایت من: [لینک]».</p>
+        </div>
+
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/60">
+          <div class="w-6 h-6 rounded-full bg-vibeamber/20 text-vibeamber flex items-center justify-center font-bold mb-3">۳</div>
+          <h3 class="font-bold text-slate-200 mb-1">دریافت خروجی تمیز</h3>
+          <p class="text-slate-400 leading-relaxed">هوش مصنوعی صفحات را بازبینی کرده و تمام تیترها، فرم‌ها و افعال «می‌باشد» را بازنویسی می‌کند.</p>
+        </div>
+      </div>
+
+      <!-- باکس پرامپت ارجاع مستقیم به سایت -->
+      <div class="rounded-2xl border border-white/10 bg-slate-950 overflow-hidden shadow-2xl">
+        <div class="px-4 py-3 border-b border-white/[0.08] bg-slate-900/60 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-vibeamber"></span>
+            <span class="text-xs font-bold text-slate-300">پرامپت ارجاع مستقیم هوش مصنوعی به سایت وایب‌متن</span>
+          </div>
+          <button id="sitePromptCopyBtn" onclick="copySitePrompt()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-vibeamber text-slate-950 font-bold text-xs hover:bg-vibeamberhover transition-all active:scale-95 shadow-sm">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            <span id="sitePromptCopyLabel">کپی پرامپت اتصال به سایت</span>
+          </button>
+        </div>
+
+        <pre id="sitePromptContent" class="p-4 sm:p-5 text-xs text-slate-300 leading-relaxed overflow-x-auto whitespace-pre-wrap font-sans select-all">وارد سایت https://vibematn.ir (یا فایل قوانین آن در https://vibematn.ir/llms.txt) شو.
+تمام قواعد نگارشی، جدول افعال فسیل، استانداردهای UX Writing و نمونه‌های دایره‌المعارف تبدیل متون ماشینی به انسانی وایب‌متن را مطالعه کن و به عنوان مرجع اصلی در نظر بگیر.
+
+سپس صفحات، تگ‌ها یا متن‌های وب‌سایت من را بازبینی کن و موارد زیر را دقیقاً بر اساس سایت وایب‌متن اصلاح کن:
+۱. تمام افعال «می‌باشد»، «می‌گردد» و تعارفات اداری را به نثر طبیعی تبدیل کن.
+۲. کلیشه‌های آغازین و فیلرهای «لازم به ذکر است» را حذف کن.
+۳. دکمه‌ها و میکروکپی‌های کاربری را نتیجه‌محور کن.
+۴. نیم‌فاصله‌ها، ارقام فارسی و واحد تومان را اعمال کن و خط تیره بلند (ام‌دش) را حذف کن.
+
+آدرس وب‌سایت من برای بازنویسی: [اینجا آدرس سایتت رو بنویس]</pre>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- دایره‌المعارف تبدیل متون (Corpus): فشرده و کارآمد با ۱۰ نمونه برتر در صفحه اول -->
+  <section id="corpus" class="py-16 border-b border-white/[0.06] relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <div>
+          <span class="text-[11px] text-vibeamber font-bold mb-1 block">نمونه‌های تبدیل شده</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-100">دایره‌المعارف تبدیل متون ماشینی</h2>
+          <p class="text-xs text-slate-400 mt-1">گزیده‌ای از تبدیل‌های دقیق قبل (هوش مصنوعی) و بعد (زبان انسان‌گونه).</p>
+        </div>
+
+        <!-- فیلترهای سبک -->
+        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <button onclick="filterCorpus('all')" class="corpus-tab-btn px-2.5 py-1 rounded bg-vibeamber text-slate-950 font-bold" data-corpus="all">همه</button>
+          <button onclick="filterCorpus('landing')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="landing">لندینگ</button>
+          <button onclick="filterCorpus('travel')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="travel">سفر</button>
+          <button onclick="filterCorpus('crypto')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="crypto">فین‌تک</button>
+          <button onclick="filterCorpus('health')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="health">سلامت</button>
+          <button onclick="filterCorpus('ux')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="ux">UX</button>
+        </div>
+      </div>
+
+      <!-- شبکه کارت‌های مقایسه -->
+      <div id="corpusGridContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- با جاوااسکریپت پر می‌شود -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- مهارت‌های رسمی وایب‌متن برای هوش مصنوعی -->
+  <section id="skills" class="py-16 border-b border-white/[0.06] bg-vibesurface/20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs text-vibeamber font-bold mb-1 inline-block">اکوسیستم مهارت‌های وایب‌متن</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-100 mb-2">۱۰ مهارت رسمی برای Claude Code، Cursor و Codex</h2>
+        <p class="text-xs text-slate-400 leading-relaxed">فایل‌های استاندارد SKILL.md که هوش مصنوعی پیش از نوشتن می‌خواند تا کپی سایت شما کاملاً بومی و انسان‌گونه شود.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+        <!-- مهارت ۱ -->
+        <div class="p-4 rounded-xl border border-vibeamber/30 bg-vibeamber/5 hover:border-vibeamber/50 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-mono text-vibeamber" dir="ltr">site-rewriter</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-vibeamber/20 text-vibeamber font-medium">پرچم‌دار</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-100 mb-1">بازنویسی کامل وب‌سایت</h3>
+            <p class="text-xs text-slate-300 leading-6 mb-3">دستورالعمل هوش مصنوعی برای خواندن کل سایت شما و بازنویسی هیرو، فرم‌ها، پلن‌ها و پیام‌های خطا در جدول قبل و بعد.</p>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-vibeamber" dir="ltr">
+            <a href="/skills/site-rewriter.md" target="_blank" class="hover:underline">/skills/site-rewriter.md</a>
+            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/site-rewriter.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+          </div>
+        </div>
+
+        <!-- مهارت ۲ -->
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 hover:border-white/20 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-mono text-vibeamber" dir="ltr">ai-filter</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">پالایش لغات</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-200 mb-1">فیلتر ضد ردپای هوش مصنوعی</h3>
+            <p class="text-xs text-slate-400 leading-6 mb-3">حذف بی‌رحمانه «می‌باشد»، دیباچه‌های کلیشه‌ای («در دنیای امروز») و گرده‌برداری‌های ترجمه‌ای انگلیسی.</p>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
+            <a href="/skills/ai-filter.md" target="_blank" class="hover:underline">/skills/ai-filter.md</a>
+            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/ai-filter.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+          </div>
+        </div>
+
+        <!-- مهارت ۳ -->
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 hover:border-white/20 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-mono text-vibeamber" dir="ltr">product-lexicon</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">واژه‌نامه</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-200 mb-1">واژه‌نامه محصولی وب ایران</h3>
+            <p class="text-xs text-slate-400 leading-6 mb-3">اصطلاحات معتبر استخراج‌شده از دیجی‌کالا، اسنپ، بلوبانک، نوبیتکس، جاباما و دیوار برای فرم‌ها و وضعیت‌ها.</p>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
+            <a href="/skills/product-lexicon.md" target="_blank" class="hover:underline">/skills/product-lexicon.md</a>
+            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/product-lexicon.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+          </div>
+        </div>
+
+        <!-- مهارت ۴ -->
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 hover:border-white/20 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-mono text-vibeamber" dir="ltr">conversion-copy</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">فروش و CRO</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-200 mb-1">کپی‌رایتینگ فروش بازار ایران</h3>
+            <p class="text-xs text-slate-400 leading-6 mb-3">فرمول‌های بومی تیترنویسی و ارزش پیشنهادی، شکستن گارد تردید خریدار، و تضمین بازگشت وجه شفاف به تومان.</p>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
+            <a href="/skills/conversion-copywriting.md" target="_blank" class="hover:underline">/skills/conversion-copywriting.md</a>
+            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/conversion-copywriting.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+          </div>
+        </div>
+
+        <!-- مهارت ۵ -->
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 hover:border-white/20 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-mono text-vibeamber" dir="ltr">error-handling</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">پیام خطا</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-200 mb-1">مهندسی پیام‌های خطا و فرم‌ها</h3>
+            <p class="text-xs text-slate-400 leading-6 mb-3">آناتومی خطای سازنده: بیان علت بدون سرزنش، راهکار بعدی، و میکرولبیل‌های موبایل ۰۹، کد ملی و شماره کارت.</p>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
+            <a href="/skills/error-handling.md" target="_blank" class="hover:underline">/skills/error-handling.md</a>
+            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/error-handling.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+          </div>
+        </div>
+
+        <!-- مهارت ۶ -->
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 hover:border-white/20 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-mono text-vibeamber" dir="ltr">fintech-checkout</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">شاپرک و تسویه</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-200 mb-1">اعتماد مالی و درگاه پرداخت</h3>
+            <p class="text-xs text-slate-400 leading-6 mb-3">میکروکپی‌های شماره مرجع (RRN)، بازگشت وجه ۷۲ ساعته، شفافیت قیمت بدون هزینه مخفی و زمان‌بندی تسویه پایا.</p>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
+            <a href="/skills/fintech-checkout.md" target="_blank" class="hover:underline">/skills/fintech-checkout.md</a>
+            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/fintech-checkout.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- کاتالوگ قوانین نگارش -->
+  <section id="rules" class="py-16 border-b border-white/[0.06]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h2 class="text-xl font-bold text-slate-100">قواعد طلایی نگارش</h2>
+          <p class="text-xs text-slate-400 mt-1">اصول مصوب فرهنگستان، ابرابزار ویکی‌پدیا و دیزاین سیستم‌های ایرانی.</p>
+        </div>
+        <button onclick="copyAgentsMd()" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-white/10 hover:border-white/20 text-xs text-slate-300 transition-all">
+          کپی پرامپت
+        </button>
+      </div>
+
+      <div id="rulesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- رندر قوانین با جاوااسکریپت -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- فوتر تمیز و بدون شلوغی با کردیت ریک سانچز -->
+  <footer class="py-10 bg-black/60 border-t border-white/[0.06] text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-vibeamber"></span>
+        <span class="text-slate-300 font-bold">وایب‌متن</span>
+      </div>
+
+      <div class="flex items-center gap-4 text-slate-400 text-xs">
+        <span>توسعه‌داده‌شده توسط <a href="https://x.com/m4tinbeigi" target="_blank" rel="noopener" class="text-slate-200 hover:text-vibeamber transition-colors font-semibold">ریک سانچز</a></span>
+        <span class="text-slate-700">|</span>
+        <a href="https://x.com/m4tinbeigi" target="_blank" rel="noopener" class="hover:text-vibeamber font-mono" dir="ltr">@m4tinbeigi</a>
+        <span class="text-slate-700">|</span>
+        <a href="https://github.com/m4tinbeigi-official" target="_blank" rel="noopener" class="hover:text-vibeamber">گیت‌هاب</a>
+        <span class="text-slate-700">|</span>
+        <a href="https://vibefarsi.ir" target="_blank" rel="noopener" class="hover:text-vibeamber">وایب‌فارسی</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- مودال پالت دستورات سریع (Command Palette / ⌘K) -->
+  <div id="commandPaletteModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-start justify-center pt-20 px-4" onclick="closeCommandPalette(event)">
+    <div class="bg-slate-900 border border-white/10 rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-3 px-4 py-3 border-b border-white/[0.08]">
+        <svg class="w-4 h-4 text-vibeamber" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input id="cmdSearchInput" type="text" placeholder="جست‌وجو در قوانین، مهارت‌ها و پلتفرم‌ها..." class="w-full bg-transparent text-sm text-slate-100 placeholder:text-slate-500 outline-none" oninput="filterCommandPalette(this.value)">
+        <kbd class="px-1.5 py-0.5 text-[10px] font-mono rounded bg-slate-800 text-slate-400 border border-slate-700" dir="ltr">ESC</kbd>
+      </div>
+      <div id="cmdResultsList" class="max-h-80 overflow-y-auto p-2 space-y-1 text-xs"></div>
+    </div>
+  </div>
+
+  <div id="agentsContentBlock" class="hidden"># دستورالعمل تولید محتوا و پالایش متن فارسی (VibeMatn Standard)
+توسعه‌داده‌شده توسط: ریک سانچز (@m4tinbeigi)
+منطبق بر: وایب‌فارسی و فرهنگستان زبان و ادب فارسی
+
+- حذف قطعی افعال اداری فسیل: «می‌باشد»، «می‌گردد»، «به شمار می‌رود»، «محسوب می‌شود». فقط از «است»، «شد» و «کرد» استفاده کنید.
+- حذف فیلرهای اعلامی: «لازم به ذکر است»، «شایان ذکر است»، «نکته حائز اهمیت این است».
+- ممنوعیت دیباچه‌های هوش مصنوعی: «در دنیای پرشتاب امروز...»، «امروزه در عصر فناوری...».
+- گرده‌برداری‌های ترجمه‌ای انگلیسی را بازنویسی روان بومی کنید.
+- عدم استفاده از خط تیره بلند (ام‌دش).
+- نیم‌فاصله اجباری در تمام پیشوندها و پسوندها.
+- ارقام در متن فارسی باید فارسی (۰-۹) و واحد پول تومان بعد از عدد باشد.</div>
+
+  <!-- موتور پردازش کلاینت -->
+  <script>
+    let rawRules = [];
+    let rawCorpus = [];
+
+    async function loadData() {
+      try {
+        const resRules = await fetch('rules.json');
+        rawRules = await resRules.json();
+        renderRules(rawRules.slice(0, 9));
+      } catch (e) {
+        console.error('Failed to load rules', e);
+      }
+
+      try {
+        const resCorpus = await fetch('corpus.json');
+        rawCorpus = await resCorpus.json();
+        renderCorpus(rawCorpus.slice(0, 6));
+      } catch (e) {
+        console.error('Failed to load corpus', e);
+      }
+    }
+
+    function renderRules(rules) {
+      const container = document.getElementById('rulesContainer');
+      if (!container) return;
+      container.innerHTML = rules.map(rule => `
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 flex flex-col justify-between hover:border-slate-700 transition-colors text-xs">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-vibeamber text-[11px]" dir="ltr">#${rule.id}</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">${rule.tags ? rule.tags[0] : 'نگارش'}</span>
+            </div>
+            <h3 class="font-bold text-slate-200 mb-2">${rule.title}</h3>
+            <div class="space-y-1.5 mb-3 text-[11px]">
+              <div class="p-2 rounded bg-rose-950/20 text-rose-300 border border-rose-900/30 line-clamp-2">${rule.bad}</div>
+              <div class="p-2 rounded bg-amber-950/20 text-amber-200 border border-amber-900/30 line-clamp-2">${rule.good}</div>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px]">
+            <span class="text-slate-500 line-clamp-1">${rule.rule}</span>
+            <button onclick="copySingleRule('${rule.title}', '${rule.good}')" class="text-vibeamber hover:text-amber-300 shrink-0 ms-2">کپی</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderCorpus(items) {
+      const container = document.getElementById('corpusGridContainer');
+      if (!container) return;
+      container.innerHTML = items.map(item => `
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 flex flex-col justify-between hover:border-slate-700 transition-colors text-xs">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-vibeamber text-[11px]" dir="ltr">#${item.id}</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400 font-mono">${item.category}</span>
+            </div>
+            <h3 class="font-bold text-slate-200 mb-2">${item.title}</h3>
+            <div class="space-y-2 mb-3 text-[11px]">
+              <div class="p-2.5 rounded-lg bg-rose-950/20 border border-rose-900/30 text-rose-300 leading-relaxed">${item.bad}</div>
+              <div class="p-2.5 rounded-lg bg-amber-950/20 border border-amber-900/30 text-amber-200 leading-relaxed">${item.good}</div>
+            </div>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px]">
+            <span class="text-slate-500 line-clamp-1">${item.principle}</span>
+            <button onclick="copySingleRule('${item.title}', '${item.good}')" class="text-vibeamber hover:text-amber-300 shrink-0 ms-2">کپی</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterCorpus(cat) {
+      document.querySelectorAll('.corpus-tab-btn').forEach(btn => {
+        if (btn.dataset.corpus === cat) {
+          btn.className = 'corpus-tab-btn px-2.5 py-1 rounded bg-vibeamber text-slate-950 font-bold';
+        } else {
+          btn.className = 'corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800';
+        }
+      });
+      if (cat === 'all') {
+        renderCorpus(rawCorpus.slice(0, 6));
+      } else {
+        renderCorpus(rawCorpus.filter(c => c.category === cat).slice(0, 6));
+      }
+    }
+
+    // متغیرها و موتور لایه‌ای پلی‌گراند
+    const rawInput = document.getElementById('rawInput');
+    const diffContainer = document.getElementById('diffViewContainer');
+    const cleanContainer = document.getElementById('cleanViewContainer');
+    let currentCleanText = '';
+    let currentTone = 'formal';
+
+    const badPatterns = [
+      { regex: /می[\s\u200c]*باشد/gu, replace: 'است' },
+      { regex: /می[\s\u200c]*گردد/gu, replace: 'می‌شود' },
+      { regex: /به\s*شمار\s*می[\s\u200c]*(?:رود|آید)/gu, replace: 'است' },
+      { regex: /حائز\s*اهمیت\s*(?:می[\s\u200c]*باشد|است)/gu, replace: 'مهم است' },
+      { regex: /(?:و\s+)?لازم\s*به\s*ذکر\s*است(?:\s*که)?/gu, replace: '' },
+      { regex: /(?:و\s+)?شایان\s*ذکر\s*است(?:\s*که)?/gu, replace: '' },
+      { regex: /در\s*پایان\s*روز/gu, replace: 'در نهایت' },
+      { regex: /در\s*دنیای\s*(?:پرشتاب|پویا|مدرن)(?:\s*و\s*(?:پرشتاب|پویا|مدرن))?\s*امروز(?:،)?/gu, replace: '' },
+      { regex: /[—–]/gu, replace: '،' },
+      { regex: /گاهاً/gu, replace: 'گاهی' },
+      { regex: /ناچاراً/gu, replace: 'به‌ناچار' },
+      { regex: /گزارشات/gu, replace: 'گزارش‌ها' },
+      { regex: /سفارشات/gu, replace: 'سفارش‌ها' },
+      { regex: /اساتید/gu, replace: 'استادان' }
+    ];
+
+    function toPersianDigits(str) {
+      const p = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+      return str.replace(/[0-9]/g, w => p[+w]);
+    }
+
+    function formatNumberSeparator(str) {
+      return str.replace(/\b(\d{4,})\b/g, m => Number(m).toLocaleString('en-US'));
+    }
+
+    function cleanDeterministic(text) {
+      if (!text) return { clean: '', fixes: 0, badFound: 0 };
+      let fixes = 0, badFound = 0, res = text;
+
+      res = res.replace(/\u0640+/g, '');
+      res = res.replace(/ي/g, 'ی').replace(/ك/g, 'ک');
+      res = res.replace(/["“]([^"”]+)["”]/gu, '«$1»');
+      res = res.replace(/\s*([،؛!؟\.])\s*/g, '$1 ');
+      res = res.replace(/,/g, '،').replace(/\?/g, '؟').replace(/;/g, '؛');
+
+      res = res.replace(/\bمی\s+/g, 'می‌').replace(/\bنمی\s+/g, 'نمی‌');
+      res = res.replace(/\s+ها\b/g, '‌ها').replace(/\s+های\b/g, '‌های');
+      res = res.replace(/\s+تر\b/g, '‌تر').replace(/\s+ترین\b/g, '‌ترین');
+
+      badPatterns.forEach(item => {
+        const matches = res.match(item.regex);
+        if (matches) {
+          badFound += matches.length;
+          fixes += matches.length;
+          res = res.replace(item.regex, item.replace);
+        }
+      });
+
+      res = formatNumberSeparator(res);
+      res = toPersianDigits(res);
+      res = res.replace(/,/g, '٬');
+      res = res.replace(/\s*،\s*،+/g, '، ').replace(/\s{2,}/g, ' ').trim();
+
+      return { clean: res, fixes, badFound };
+    }
+
+    function runLinter() {
+      const val = rawInput.value;
+      const inputLen = val.length;
+      document.getElementById('inputCharCount').innerText = toPersianDigits(inputLen.toString()) + ' کاراکتر';
+
+      if (!val.trim()) {
+        diffContainer.innerHTML = '<span class="text-slate-600">متن پالایش‌شده پس از بررسی اینجا نمایش داده خواهد شد.</span>';
+        cleanContainer.innerHTML = '<span class="text-slate-600">متن تمیز نهایی اینجا نمایش داده می‌شود.</span>';
+        document.getElementById('statBadFound').innerText = '۰';
+        document.getElementById('statFixes').innerText = '۰';
+        document.getElementById('humanScoreVal').innerText = '۱۰۰٪';
+        currentCleanText = '';
+        return;
+      }
+
+      const result = cleanDeterministic(val);
+      currentCleanText = result.clean;
+
+      if (currentTone === 'conversational') {
+        currentCleanText = currentCleanText.replace(/\bمی‌شود\b/g, 'میشه')
+                                           .replace(/\bمی‌توانید\b/g, 'می‌تونید')
+                                           .replace(/\bمی‌خواهم\b/g, 'می‌خوام')
+                                           .replace(/\bرا\b/g, 'رو');
+      }
+
+      document.getElementById('statBadFound').innerText = toPersianDigits(result.badFound.toString());
+      document.getElementById('statFixes').innerText = toPersianDigits(result.fixes.toString());
+
+      const penalty = Math.min(result.badFound * 20 + result.fixes * 5, 95);
+      const score = Math.max(100 - penalty, 5);
+      document.getElementById('humanScoreVal').innerText = toPersianDigits(score.toString()) + '٪';
+
+      const diffTokens = computeSimpleDiff(val, currentCleanText);
+      diffContainer.innerHTML = renderSimpleDiff(diffTokens);
+      cleanContainer.innerText = currentCleanText;
+    }
+
+    rawInput.addEventListener('input', runLinter);
+
+    function setTone(tone) {
+      currentTone = tone;
+      document.querySelectorAll('.tone-btn').forEach(b => {
+        b.className = 'tone-btn px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700 hover:text-white transition-all';
+      });
+      const map = { formal: 'toneBtnFormal', conversational: 'toneBtnConversational', 'ui-copy': 'toneBtnUiCopy' };
+      if (document.getElementById(map[tone])) {
+        document.getElementById(map[tone]).className = 'tone-btn px-2.5 py-1 rounded bg-vibeamber text-slate-950 font-bold transition-all';
+      }
+      runLinter();
+    }
+
+    function setPlaygroundView(mode) {
+      const tabDiff = document.getElementById('viewTabDiff');
+      const tabClean = document.getElementById('viewTabClean');
+      const tabSplit = document.getElementById('viewTabSplit');
+      const grid = document.getElementById('playgroundEditorsGrid');
+      const title = document.getElementById('outputTitleLabel');
+
+      [tabDiff, tabClean, tabSplit].forEach(t => t.className = 'px-3 py-1 rounded text-slate-400 hover:text-slate-200 transition-all');
+
+      if (mode === 'diff') {
+        tabDiff.className = 'tab-active px-3 py-1 rounded font-semibold text-slate-300 transition-all';
+        diffContainer.classList.remove('hidden');
+        cleanContainer.classList.add('hidden');
+        title.innerText = 'پیش‌نمایش تفاوت هوشمند (Diff)';
+        grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-4';
+      } else if (mode === 'clean') {
+        tabClean.className = 'tab-active px-3 py-1 rounded font-semibold text-slate-300 transition-all';
+        diffContainer.classList.add('hidden');
+        cleanContainer.classList.remove('hidden');
+        title.innerText = 'خروجی تمیز نهایی';
+        grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-4';
+      } else if (mode === 'split') {
+        tabSplit.className = 'tab-active px-3 py-1 rounded font-semibold text-slate-300 transition-all';
+        diffContainer.classList.remove('hidden');
+        cleanContainer.classList.add('hidden');
+        title.innerText = 'مقایسه دوطرفه';
+        grid.className = 'grid grid-cols-1 lg:grid-cols-2 gap-4';
+      }
+    }
+
+    function computeSimpleDiff(orig, clean) {
+      if (!orig) return [];
+      const words1 = orig.split(' ');
+      const words2 = clean.split(' ');
+      const diff = [];
+      const len = Math.max(words1.length, words2.length);
+      for (let i = 0; i < len; i++) {
+        const w1 = words1[i];
+        const w2 = words2[i];
+        if (w1 === w2) {
+          diff.push({ type: 'same', text: w1 + ' ' });
+        } else {
+          if (w1) diff.push({ type: 'del', text: w1 + ' ' });
+          if (w2) diff.push({ type: 'ins', text: w2 + ' ' });
+        }
+      }
+      return diff;
+    }
+
+    function renderSimpleDiff(tokens) {
+      return tokens.map(t => {
+        if (t.type === 'del') return `<del class="diff-del">${t.text}</del>`;
+        if (t.type === 'ins') return `<ins class="diff-ins">${t.text}</ins>`;
+        return t.text;
+      }).join('');
+    }
+
+    function resetPlayground() {
+      rawInput.value = '';
+      runLinter();
+    }
+
+    function loadSampleText(type) {
+      rawInput.value = "در دنیای پرشتاب امروز، استفاده از پلتفرم های ابری امری بسیار حیاتی محسوب می گردد و لازم به ذکر است که هزینه این سرویس 150000 تومان می باشد، که بسیار به صرفه به شمار می رود.";
+      runLinter();
+    }
+
+    function copyCleanOutput(btn) {
+      if (!currentCleanText) return;
+      navigator.clipboard.writeText(currentCleanText);
+      const label = document.getElementById('copyCleanText');
+      label.innerText = 'کپی شد!';
+      setTimeout(() => label.innerText = 'کپی خروجی', 2000);
+    }
+
+    function copySitePrompt() {
+      const text = document.getElementById('sitePromptContent').innerText;
+      navigator.clipboard.writeText(text);
+      const label = document.getElementById('sitePromptCopyLabel');
+      label.innerText = 'پرامپت کپی شد!';
+      setTimeout(() => label.innerText = 'کپی پرامپت بازنویسی', 2000);
+    }
+
+    function copyAgentsMd() {
+      const text = document.getElementById('agentsContentBlock').innerText;
+      navigator.clipboard.writeText(text);
+      alert('دستورالعمل جامع AGENTS.md در کلیپ‌بورد کپی شد.');
+    }
+
+    function copySingleRule(title, goodText) {
+      navigator.clipboard.writeText(`${title}: ${goodText}`);
+      alert('متن کپی شد.');
+    }
+
+    function copyInstallCmd(cmd, btn) {
+      navigator.clipboard.writeText(cmd);
+      const orig = btn.innerText;
+      btn.innerText = 'کپی شد!';
+      setTimeout(() => btn.innerText = orig, 2000);
+    }
+
+    function changeFontFamily(family) {
+      const raw = document.getElementById('rawInput');
+      const diff = document.getElementById('diffViewContainer');
+      const clean = document.getElementById('cleanViewContainer');
+      [raw, diff, clean].forEach(el => {
+        if (el) el.style.fontFamily = family;
+      });
+    }
+
+    function toggleMobileMenu() {
+      document.getElementById('mobileDrawer').classList.toggle('hidden');
+    }
+
+    function openCommandPalette() {
+      const m = document.getElementById('commandPaletteModal');
+      m.classList.remove('hidden');
+      document.getElementById('cmdSearchInput').focus();
+      filterCommandPalette('');
+    }
+
+    function closeCommandPalette(e) {
+      document.getElementById('commandPaletteModal').classList.add('hidden');
+    }
+
+    const commandList = [
+      { t: 'پلی‌گراند زنده پالایش متن', l: '#playground' },
+      { t: 'دایره‌المعارف تبدیل AI به انسان', l: '#corpus' },
+      { t: 'مهارت‌های وایب‌فارسی', l: '#skills' },
+      { t: 'قوانین نگارش فارسی', l: '#rules' },
+      { t: 'دستورالعمل جامع AGENTS.md', l: '#agents' }
+    ];
+
+    function filterCommandPalette(q) {
+      const list = document.getElementById('cmdResultsList');
+      const filtered = commandList.filter(item => item.t.includes(q.trim()));
+      list.innerHTML = filtered.map(item => `
+        <a href="${item.l}" onclick="closeCommandPalette()" class="flex items-center justify-between p-2 rounded hover:bg-slate-800 text-slate-200">
+          <span>${item.t}</span>
+          <span class="text-vibeamber text-[10px]">باز کردن</span>
+        </a>
+      `).join('');
+    }
+
+    document.addEventListener('keydown', e => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openCommandPalette();
+      } else if (e.key === 'Escape') {
+        closeCommandPalette();
+      }
+    });
+
+    loadData();
+  </script>
+</body>
+</html>

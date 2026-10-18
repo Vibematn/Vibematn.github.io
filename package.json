@@ -1,0 +1,23 @@
+{
+  "name": "vibematn",
+  "version": "1.0.0",
+  "description": "استاندارد پالایش و انسان‌سازی متون فارسی هوش مصنوعی",
+  "main": "bin/vibematn.js",
+  "bin": {
+    "vibematn": "./bin/vibematn.js"
+  },
+  "keywords": [
+    "vibefarsi",
+    "persian",
+    "text-cleaner",
+    "ai-humanizer",
+    "ux-writing",
+    "copywriting"
+  ],
+  "author": "Rick Sanchez (@m4tinbeigi)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/m4tinbeigi-official/vibematn"
+  }
+}
