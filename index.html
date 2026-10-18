@@ -616,6 +616,41 @@
     </div>
   </section>
 
+  <!-- دعوت از کپی‌رایترها و نویسندگان تجربه کاربری -->
+  <section id="contribute" class="py-16 border-b border-white/[0.06] bg-slate-950/60 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="p-8 rounded-3xl border border-vibeamber/30 bg-gradient-to-b from-vibeamber/[0.07] to-transparent relative overflow-hidden">
+        
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-vibeamber/10 border border-vibeamber/20 text-vibeamber text-[11px] font-bold mb-4">
+            <span>مشارکت در پایگاه دانش وایب‌متن</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-100 mb-3">
+            دعوت از کپی‌رایترها و نویسندگان محصول
+          </h2>
+
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6">
+            تبدیل متن‌های ماشینی هوش مصنوعی به نوشته‌های متقاعدکننده، جذاب و باهویت انسانی نیاز به تجربه نویسندگان واقعی دارد. اگر نمونه‌های بهتری برای دایره‌المعارف، اصلاح افعال فسیل یا قوانین یوایکس رایتینگ دارید، خوشحال می‌شوم با هم گفت‌وگو و همکاری کنیم.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="mailto:m4tinbeigi@gmail.com?subject=همکاری در توسعه وایب‌متن&body=سلام، من کپی‌رایتر هستم و مایلم در توسعه پایگاه دانش وایب‌متن مشارکت کنم." class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-vibeamber text-slate-950 font-bold text-xs hover:bg-vibeamberhover transition-all shadow-lg active:scale-95">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <span>ارسال ایمیل مستقیم</span>
+            </a>
+
+            <button onclick="copyCopywriterEmail(this)" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 border border-white/10 hover:border-white/20 text-slate-200 text-xs transition-all active:scale-95">
+              <span class="font-mono text-[11px]" dir="ltr">m4tinbeigi@gmail.com</span>
+              <span class="text-slate-400 text-[11px] copy-label">کپی ایمیل</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- فوتر تمیز و بدون شلوغی با کردیت ریک سانچز -->
   <footer class="py-10 bg-black/60 border-t border-white/[0.06] text-xs text-slate-500">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -960,6 +995,15 @@
       const orig = btn.innerText;
       btn.innerText = 'کپی شد!';
       setTimeout(() => btn.innerText = orig, 2000);
+    }
+
+    function copyCopywriterEmail(btn) {
+      navigator.clipboard.writeText('m4tinbeigi@gmail.com');
+      const label = btn.querySelector('.copy-label');
+      if (label) {
+        label.innerText = 'کپی شد!';
+        setTimeout(() => label.innerText = 'کپی ایمیل', 2000);
+      }
     }
 
     function changeFontFamily(family) {
