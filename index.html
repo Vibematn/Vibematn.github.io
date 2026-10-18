@@ -329,11 +329,35 @@
         <!-- سوال ۱: نوع و حوزه پروژه -->
         <div>
           <label class="block font-bold text-slate-200 mb-2.5 text-sm">۱. حوزه و زمینه فعالیت پروژه شما چیه؟</label>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="wzDomainOptions">
-            <button type="button" onclick="selectWizardOption('domain', 'saas', this)" class="wz-opt-domain p-3 rounded-xl border border-vibeamber bg-vibeamber/10 text-vibeamber font-bold text-center transition-all">استارتاپ و SaaS</button>
-            <button type="button" onclick="selectWizardOption('domain', 'shop', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-center transition-all">فروشگاه آنلاین</button>
-            <button type="button" onclick="selectWizardOption('domain', 'fintech', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-center transition-all">صرافی و فین‌تک</button>
-            <button type="button" onclick="selectWizardOption('domain', 'services', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-center transition-all">سفر، سلامت یا خدمات</button>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2" id="wzDomainOptions">
+            <button type="button" onclick="selectWizardOption('domain', 'saas', this)" class="wz-opt-domain p-3 rounded-xl border border-vibeamber bg-vibeamber/10 text-vibeamber font-bold text-start transition-all">
+              <span class="block text-sm mb-0.5">استارتاپ و SaaS</span>
+              <span class="text-[11px] text-slate-400 font-normal">آنبوردینگ، فیچرها، پلن‌ها</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('domain', 'shop', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
+              <span class="block text-sm mb-0.5 text-slate-200">فروشگاه آنلاین</span>
+              <span class="text-[11px] text-slate-400 font-normal">سبد خرید، تسویه، کالا</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('domain', 'fintech', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
+              <span class="block text-sm mb-0.5 text-slate-200">صرافی و فین‌تک</span>
+              <span class="text-[11px] text-slate-400 font-normal">درگاه، تسویه، کیف پول</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('domain', 'services', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
+              <span class="block text-sm mb-0.5 text-slate-200">سفر و خدمات</span>
+              <span class="text-[11px] text-slate-400 font-normal">رزرو، نوبت‌دهی، پشتیبانی</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('domain', 'academy', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
+              <span class="block text-sm mb-0.5 text-slate-200">آموزش و آکادمی</span>
+              <span class="text-[11px] text-slate-400 font-normal">دوره‌ها، سرفصل، ثبت‌نام</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('domain', 'media', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
+              <span class="block text-sm mb-0.5 text-slate-200">محتوایی و رسانه</span>
+              <span class="text-[11px] text-slate-400 font-normal">وبلاگ، نشریه، مقالات</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('domain', 'b2b', this)" class="wz-opt-domain p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all col-span-2 sm:col-span-1">
+              <span class="block text-sm mb-0.5 text-slate-200">B2B و اتوماسیون</span>
+              <span class="text-[11px] text-slate-400 font-normal">پورتال سازمانی، گردش‌کار</span>
+            </button>
           </div>
         </div>
 
@@ -367,6 +391,25 @@
             <button type="button" onclick="selectWizardOption('scope', 'cleanup', this)" class="wz-opt-scope p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
               <span class="block text-sm mb-0.5 text-slate-200">فقط پالایش املایی و حذف فسیل‌ها</span>
               <span class="text-[11px] text-slate-400 font-normal">حفظ جملات و فقط حذف می‌باشد، نیم‌فاصله‌سازی و اعداد فارسی</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- سوال ۴: مدل هدف هوش مصنوعی -->
+        <div>
+          <label class="block font-bold text-slate-200 mb-2.5 text-sm">۴. پرامپت برای کدام مدل هوش مصنوعی بهینه‌سازی شود؟</label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2" id="wzModelOptions">
+            <button type="button" onclick="selectWizardOption('model', 'claude', this)" class="wz-opt-model p-3 rounded-xl border border-vibeamber bg-vibeamber/10 text-vibeamber font-bold text-start transition-all">
+              <span class="block text-sm mb-1">Claude 3.7 Sonnet</span>
+              <span class="text-[11px] text-slate-400 font-normal">ساختار تگ‌های XML، تفکر استدلالی و اجرای باانضباط</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('model', 'gpt4o', this)" class="wz-opt-model p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
+              <span class="block text-sm mb-1 text-slate-200">GPT-4o</span>
+              <span class="text-[11px] text-slate-400 font-normal">چک‌لیست فشرده مارک‌داون، جدول مقایسه‌ای و اجرای سریع</span>
+            </button>
+            <button type="button" onclick="selectWizardOption('model', 'gemini', this)" class="wz-opt-model p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all">
+              <span class="block text-sm mb-1 text-slate-200">Gemini 2.0</span>
+              <span class="text-[11px] text-slate-400 font-normal">گراندینگ در فایل‌های پروژه، تفکیک گام‌به‌گام لایه‌ای</span>
             </button>
           </div>
         </div>
@@ -452,31 +495,41 @@
     </div>
   </section>
 
-  <!-- دایره‌المعارف تبدیل متون (Corpus): فشرده و کارآمد با ۱۰ نمونه برتر در صفحه اول -->
+  <!-- دایره‌المعارف ۱۰۰ تبدیل تخصصی کپی‌رایتینگ (Corpus) -->
   <section id="corpus" class="py-16 border-b border-white/[0.06] relative">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <div>
-          <span class="text-[11px] text-vibeamber font-bold mb-1 block">نمونه‌های تبدیل شده</span>
-          <h2 class="text-xl sm:text-2xl font-bold text-slate-100">دایره‌المعارف تبدیل متون ماشینی</h2>
-          <p class="text-xs text-slate-400 mt-1">گزیده‌ای از تبدیل‌های دقیق قبل (هوش مصنوعی) و بعد (زبان انسان‌گونه).</p>
+          <span class="text-[11px] text-vibeamber font-bold mb-1 block">پایگاه داده الگوهای تبدیل</span>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-100">دایره‌المعارف ۱۰۰ تبدیل تخصصی کپی‌رایتینگ</h2>
+          <p class="text-xs text-slate-400 mt-1">گزیده‌ای از دقیق‌ترین نمونه‌های تبدیل متن ماشینی به زبان بومی و ترغیب‌کننده انسان‌گونه.</p>
         </div>
 
-        <!-- فیلترهای سبک -->
+        <!-- فیلترهای دسته‌بندی -->
         <div class="flex flex-wrap items-center gap-1.5 text-xs">
           <button onclick="filterCorpus('all')" class="corpus-tab-btn px-2.5 py-1 rounded bg-vibeamber text-slate-950 font-bold" data-corpus="all">همه</button>
-          <button onclick="filterCorpus('landing')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="landing">لندینگ</button>
-          <button onclick="filterCorpus('travel')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="travel">سفر</button>
-          <button onclick="filterCorpus('crypto')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="crypto">فین‌تک</button>
+          <button onclick="filterCorpus('saas')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="saas">استارتاپ و SaaS</button>
+          <button onclick="filterCorpus('shop')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="shop">فروشگاه</button>
+          <button onclick="filterCorpus('fintech')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="fintech">فین‌تک</button>
           <button onclick="filterCorpus('health')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="health">سلامت</button>
-          <button onclick="filterCorpus('ux')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="ux">UX</button>
+          <button onclick="filterCorpus('travel')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="travel">سفر</button>
+          <button onclick="filterCorpus('support')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="support">پشتیبانی</button>
+          <button onclick="filterCorpus('landing')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="landing">لندینگ</button>
+          <button onclick="filterCorpus('forms')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="forms">فرم‌ها</button>
+          <button onclick="filterCorpus('hr')" class="corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800" data-corpus="hr">استخدام</button>
         </div>
       </div>
 
       <!-- شبکه کارت‌های مقایسه -->
-      <div id="corpusGridContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div id="corpusGridContainer" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <!-- با جاوااسکریپت پر می‌شود -->
+      </div>
+
+      <div class="text-center" id="corpusLoadMoreBox">
+        <button onclick="loadMoreCorpus()" class="px-5 py-2 rounded-xl bg-slate-900 border border-white/10 hover:border-vibeamber/40 text-xs text-slate-300 hover:text-white transition-all">
+          نمایش نمونه‌های بیشتر
+        </button>
       </div>
 
     </div>
@@ -492,7 +545,7 @@
         <p class="text-xs text-slate-400 leading-relaxed">فایل‌های استاندارد SKILL.md که هوش مصنوعی پیش از نوشتن می‌خواند تا کپی سایت شما کاملاً بومی و انسان‌گونه شود.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         
         <!-- مهارت ۱ -->
         <div class="p-4 rounded-xl border border-vibeamber/30 bg-vibeamber/5 hover:border-vibeamber/50 transition-all flex flex-col justify-between">
@@ -505,8 +558,8 @@
             <p class="text-xs text-slate-300 leading-6 mb-3">دستورالعمل هوش مصنوعی برای خواندن کل سایت شما و بازنویسی هیرو، فرم‌ها، پلن‌ها و پیام‌های خطا در جدول قبل و بعد.</p>
           </div>
           <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-vibeamber" dir="ltr">
-            <a href="/skills/site-rewriter.md" target="_blank" class="hover:underline">/skills/site-rewriter.md</a>
-            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/site-rewriter.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+            <a href="/skills/site-rewriter.md" target="_blank" class="hover:underline">site-rewriter.md</a>
+            <button onclick="copySkillUrl('site-rewriter.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
           </div>
         </div>
 
@@ -521,8 +574,8 @@
             <p class="text-xs text-slate-400 leading-6 mb-3">حذف بی‌رحمانه «می‌باشد»، دیباچه‌های کلیشه‌ای («در دنیای امروز») و گرده‌برداری‌های ترجمه‌ای انگلیسی.</p>
           </div>
           <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
-            <a href="/skills/ai-filter.md" target="_blank" class="hover:underline">/skills/ai-filter.md</a>
-            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/ai-filter.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+            <a href="/skills/ai-filter.md" target="_blank" class="hover:underline">ai-filter.md</a>
+            <button onclick="copySkillUrl('ai-filter.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
           </div>
         </div>
 
@@ -537,8 +590,8 @@
             <p class="text-xs text-slate-400 leading-6 mb-3">اصطلاحات معتبر استخراج‌شده از دیجی‌کالا، اسنپ، بلوبانک، نوبیتکس، جاباما و دیوار برای فرم‌ها و وضعیت‌ها.</p>
           </div>
           <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
-            <a href="/skills/product-lexicon.md" target="_blank" class="hover:underline">/skills/product-lexicon.md</a>
-            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/product-lexicon.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+            <a href="/skills/product-lexicon.md" target="_blank" class="hover:underline">product-lexicon.md</a>
+            <button onclick="copySkillUrl('product-lexicon.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
           </div>
         </div>
 
@@ -553,8 +606,8 @@
             <p class="text-xs text-slate-400 leading-6 mb-3">فرمول‌های بومی تیترنویسی و ارزش پیشنهادی، شکستن گارد تردید خریدار، و تضمین بازگشت وجه شفاف به تومان.</p>
           </div>
           <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
-            <a href="/skills/conversion-copywriting.md" target="_blank" class="hover:underline">/skills/conversion-copywriting.md</a>
-            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/conversion-copywriting.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+            <a href="/skills/conversion-copywriting.md" target="_blank" class="hover:underline">conversion-copywriting.md</a>
+            <button onclick="copySkillUrl('conversion-copywriting.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
           </div>
         </div>
 
@@ -569,8 +622,8 @@
             <p class="text-xs text-slate-400 leading-6 mb-3">آناتومی خطای سازنده: بیان علت بدون سرزنش، راهکار بعدی، و میکرولبیل‌های موبایل ۰۹، کد ملی و شماره کارت.</p>
           </div>
           <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
-            <a href="/skills/error-handling.md" target="_blank" class="hover:underline">/skills/error-handling.md</a>
-            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/error-handling.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+            <a href="/skills/error-handling.md" target="_blank" class="hover:underline">error-handling.md</a>
+            <button onclick="copySkillUrl('error-handling.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
           </div>
         </div>
 
@@ -585,8 +638,72 @@
             <p class="text-xs text-slate-400 leading-6 mb-3">میکروکپی‌های شماره مرجع (RRN)، بازگشت وجه ۷۲ ساعته، شفافیت قیمت بدون هزینه مخفی و زمان‌بندی تسویه پایا.</p>
           </div>
           <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
-            <a href="/skills/fintech-checkout.md" target="_blank" class="hover:underline">/skills/fintech-checkout.md</a>
-            <button onclick="copyInstallCmd('curl -s http://localhost:3000/skills/fintech-checkout.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+            <a href="/skills/fintech-checkout.md" target="_blank" class="hover:underline">fintech-checkout.md</a>
+            <button onclick="copySkillUrl('fintech-checkout.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+          </div>
+        </div>
+
+        <!-- مهارت ۷ -->
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 hover:border-white/20 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-mono text-vibeamber" dir="ltr">seo-content</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">سئو و وبلاگ</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-200 mb-1">نگارش مقالات سئو و وبلاگ</h3>
+            <p class="text-xs text-slate-400 leading-6 mb-3">چارچوب BLUF (پاسخ در پاراگراف اول)، ریتم پاندولی جملات و متاهای صادقانه بدون زردنویسی.</p>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
+            <a href="/skills/seo-content.md" target="_blank" class="hover:underline">seo-content.md</a>
+            <button onclick="copySkillUrl('seo-content.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+          </div>
+        </div>
+
+        <!-- مهارت ۸ -->
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 hover:border-white/20 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-mono text-vibeamber" dir="ltr">messaging-email</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">پیامک و ایمیل</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-200 mb-1">پیامک‌های تراکنشی و ایمیل مارکتینگ</h3>
+            <p class="text-xs text-slate-400 leading-6 mb-3">پیامک‌های زیر ۷۰ کاراکتر OTP و تایید سفارش، بازیابی سبد خرید رهاشده و ایمیل‌های رسمی خرید.</p>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
+            <a href="/skills/messaging-email.md" target="_blank" class="hover:underline">messaging-email.md</a>
+            <button onclick="copySkillUrl('messaging-email.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+          </div>
+        </div>
+
+        <!-- مهارت ۹ -->
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 hover:border-white/20 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-mono text-vibeamber" dir="ltr">conversational</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">چت و محاوره</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-200 mb-1">فارسی محاوره‌ای و پشتیبانی چت</h3>
+            <p class="text-xs text-slate-400 leading-6 mb-3">جدول شکسته‌نویسی صحیح، آزمون‌های قطعی هکسره و الگوهای حل بحران مشتری بدون تعارفات چرب‌زبانی.</p>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
+            <a href="/skills/conversational-support.md" target="_blank" class="hover:underline">conversational-support.md</a>
+            <button onclick="copySkillUrl('conversational-support.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
+          </div>
+        </div>
+
+        <!-- مهارت ۱۰ -->
+        <div class="p-4 rounded-xl border border-white/[0.08] bg-slate-900/40 hover:border-white/20 transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-2">
+              <span class="font-mono text-vibeamber" dir="ltr">protocol-tools</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">ابزارها و CLI</span>
+            </div>
+            <h3 class="text-sm font-bold text-slate-200 mb-1">پروتکل ابزارهای هوش مصنوعی و CLI</h3>
+            <p class="text-xs text-slate-400 leading-6 mb-3">راهنمای پروتکل llms.txt، اکشن گیت‌هاب و دستور ترمینال npx vibematn برای اعتبارسنجی خودکار متن.</p>
+          </div>
+          <div class="pt-2 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-400" dir="ltr">
+            <a href="/skills/protocol-tools.md" target="_blank" class="hover:underline">protocol-tools.md</a>
+            <button onclick="copySkillUrl('protocol-tools.md', this)" class="text-vibeamber font-sans text-xs ms-2">کپی</button>
           </div>
         </div>
 
@@ -601,7 +718,7 @@
       
       <div class="flex items-center justify-between mb-8">
         <div>
-          <h2 class="text-xl font-bold text-slate-100">قواعد طلایی نگارش</h2>
+          <h2 class="text-xl font-bold text-slate-100">قواعد طلایی نگارش (۶۴ قاعده مصوب)</h2>
           <p class="text-xs text-slate-400 mt-1">اصول مصوب فرهنگستان، ابرابزار ویکی‌پدیا و دیزاین سیستم‌های ایرانی.</p>
         </div>
         <button onclick="copyAgentsMd()" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-white/10 hover:border-white/20 text-xs text-slate-300 transition-all">
@@ -609,8 +726,14 @@
         </button>
       </div>
 
-      <div id="rulesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div id="rulesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
         <!-- رندر قوانین با جاوااسکریپت -->
+      </div>
+
+      <div class="text-center" id="rulesLoadMoreBox">
+        <button onclick="loadMoreRules()" class="px-5 py-2 rounded-xl bg-slate-900 border border-white/10 hover:border-vibeamber/40 text-xs text-slate-300 hover:text-white transition-all">
+          نمایش قواعد بیشتر
+        </button>
       </div>
 
     </div>
@@ -718,6 +841,10 @@
       }
     }
 
+    let corpusPageLimit = 8;
+    let currentCorpusCat = 'all';
+    let rulesPageLimit = 9;
+
     function renderRules(rules) {
       const container = document.getElementById('rulesContainer');
       if (!container) return;
@@ -766,7 +893,27 @@
       `).join('');
     }
 
+    function getFilteredCorpusItems() {
+      if (currentCorpusCat === 'all') return rawCorpus;
+      const catMap = {
+        saas: ['saas', 'b2b'],
+        shop: ['shop'],
+        fintech: ['fintech', 'crypto'],
+        health: ['health'],
+        travel: ['travel'],
+        support: ['support'],
+        landing: ['landing', 'cro'],
+        forms: ['forms', 'ux'],
+        hr: ['hr', 'jobs'],
+        legal: ['legal']
+      };
+      const allowed = catMap[currentCorpusCat] || [currentCorpusCat];
+      return rawCorpus.filter(c => allowed.includes(c.category));
+    }
+
     function filterCorpus(cat) {
+      currentCorpusCat = cat;
+      corpusPageLimit = 8;
       document.querySelectorAll('.corpus-tab-btn').forEach(btn => {
         if (btn.dataset.corpus === cat) {
           btn.className = 'corpus-tab-btn px-2.5 py-1 rounded bg-vibeamber text-slate-950 font-bold';
@@ -774,11 +921,37 @@
           btn.className = 'corpus-tab-btn px-2.5 py-1 rounded bg-slate-900 text-slate-400 hover:text-white border border-slate-800';
         }
       });
-      if (cat === 'all') {
-        renderCorpus(rawCorpus.slice(0, 6));
-      } else {
-        renderCorpus(rawCorpus.filter(c => c.category === cat).slice(0, 6));
+      const items = getFilteredCorpusItems();
+      renderCorpus(items.slice(0, corpusPageLimit));
+      const loadMoreBox = document.getElementById('corpusLoadMoreBox');
+      if (loadMoreBox) {
+        loadMoreBox.style.display = items.length > corpusPageLimit ? 'block' : 'none';
       }
+    }
+
+    function loadMoreCorpus() {
+      corpusPageLimit += 8;
+      const items = getFilteredCorpusItems();
+      renderCorpus(items.slice(0, corpusPageLimit));
+      const loadMoreBox = document.getElementById('corpusLoadMoreBox');
+      if (loadMoreBox) {
+        loadMoreBox.style.display = items.length > corpusPageLimit ? 'block' : 'none';
+      }
+    }
+
+    function loadMoreRules() {
+      rulesPageLimit += 9;
+      renderRules(rawRules.slice(0, rulesPageLimit));
+      const loadMoreBox = document.getElementById('rulesLoadMoreBox');
+      if (loadMoreBox) {
+        loadMoreBox.style.display = rawRules.length > rulesPageLimit ? 'block' : 'none';
+      }
+    }
+
+    function copySkillUrl(skillPath, btn) {
+      const baseUrl = getVibeMatnBaseUrl();
+      const cmd = `curl -s ${baseUrl}/skills/${skillPath}`;
+      copyInstallCmd(cmd, btn);
     }
 
     // متغیرها و موتور لایه‌ای پلی‌گراند
@@ -1073,16 +1246,29 @@
     let wizardState = {
       domain: 'saas',
       tone: 'formal',
-      scope: 'deep'
+      scope: 'deep',
+      model: 'claude'
     };
 
     function selectWizardOption(group, val, btn) {
       wizardState[group] = val;
       const selectorClass = `wz-opt-${group}`;
       document.querySelectorAll(`.${selectorClass}`).forEach(b => {
-        b.className = `${selectorClass} p-3 rounded-xl border border-white/10 bg-slate-900/60 text-slate-300 hover:border-white/20 text-start transition-all`;
+        b.classList.remove('border-vibeamber', 'bg-vibeamber/10', 'text-vibeamber', 'font-bold');
+        b.classList.add('border-white/10', 'bg-slate-900/60', 'text-slate-300');
+        const titleSpan = b.querySelector('.block');
+        if (titleSpan) {
+          titleSpan.classList.remove('text-vibeamber');
+          titleSpan.classList.add('text-slate-200');
+        }
       });
-      btn.className = `${selectorClass} p-3 rounded-xl border border-vibeamber bg-vibeamber/10 text-vibeamber font-bold text-start transition-all`;
+      btn.classList.remove('border-white/10', 'bg-slate-900/60', 'text-slate-300');
+      btn.classList.add('border-vibeamber', 'bg-vibeamber/10', 'text-vibeamber', 'font-bold');
+      const activeSpan = btn.querySelector('.block');
+      if (activeSpan) {
+        activeSpan.classList.remove('text-slate-200');
+        activeSpan.classList.add('text-vibeamber');
+      }
       generateWizardPrompt();
     }
 
@@ -1098,33 +1284,165 @@
         instantEl.innerText = `تمام فایل‌ها و متن‌های این پروژه را بخوان. سپس با مراجعه به استانداردهای ${baseUrl}/llms.txt تمام افعال فسیل اداری (می‌باشد/می‌گردد)، کلیشه‌ها و متون ماشینی را به زبان فارسی روان، انسانی و ترغیب‌کننده بازنویسی کن.`;
       }
 
-      const domainSkills = {
-        saas: 'site-rewriter.md و conversion-copywriting.md',
-        shop: 'product-lexicon.md و fintech-checkout.md',
-        fintech: 'fintech-checkout.md و product-lexicon.md',
-        services: 'error-handling.md و site-rewriter.md'
+      const domainData = {
+        saas: {
+          title: 'استارتاپ و SaaS',
+          skills: ['site-rewriter.md', 'conversion-copywriting.md', 'product-lexicon.md'],
+          directive: 'تمرکز بر شفاف‌سازی ارزش پیشنهادی در هیرو، آنبوردینگ ساده و بدون سردرگمی، تبدیل اصطلاحات پیچیده فنی به ارزش‌های ملموس برای کاربر و طراحی دکمه‌های اقدام ترغیب‌کننده.'
+        },
+        shop: {
+          title: 'فروشگاه آنلاین',
+          skills: ['product-lexicon.md', 'fintech-checkout.md', 'conversion-copywriting.md'],
+          directive: 'تمرکز بر بهینه‌سازی سبد خرید، رفع تردید در خرید کالا، شفافیت در نحوه ارسال و ضمانت، ساده‌سازی فرایند تسویه حساب و نمایش ارقام منحصراً با واحد تومان.'
+        },
+        fintech: {
+          title: 'صرافی و فین‌تک',
+          skills: ['fintech-checkout.md', 'error-handling.md', 'product-lexicon.md'],
+          directive: 'اعتمادسازی در درگاه پرداخت، شفافیت کامل در کارمزد تراکنش‌ها بدون غافلگیری، جلوگیری از پیام‌های خطای دلهره‌آور در احراز هویت و رعایت دقیق واژگان بانکی ایران.'
+        },
+        services: {
+          title: 'سفر و خدمات',
+          skills: ['error-handling.md', 'conversational-support.md', 'site-rewriter.md'],
+          directive: 'شفافیت در مراحل رزرو، ثبت نوبت و پیگیری وضعیت، پشتیبانی صریح و سریع، همدلی در پیام‌های کنسلی و تاخیر، و پرهیز از حواله دادن کاربر به تلفن و فرایندهای مبهم.'
+        },
+        academy: {
+          title: 'آموزش و آکادمی',
+          skills: ['conversion-copywriting.md', 'seo-content.md', 'conversational-support.md'],
+          directive: 'عناوین دوره‌ها با تمرکز بر مهارت‌های کاربردی و بازار کار واقعی، شفافیت سرفصل‌ها و پیش‌نیازها، رفع اضطراب یادگیری دانشجو و پرهیز جدی از شعارهای زرد انگیزشی.'
+        },
+        media: {
+          title: 'محتوایی و رسانه',
+          skills: ['seo-content.md', 'ai-filter.md', 'site-rewriter.md'],
+          directive: 'عناوین خبری و مقاله‌ای اصیل و ضد کلیک‌بیت، ریتم روان و بندهای کوتاه، حذف کامل ترجمه تحت‌اللفظی و ادبیات هوش مصنوعی، و انضباط در نگارش بر پایه سئو پاک و معنایی.'
+        },
+        b2b: {
+          title: 'B2B و اتوماسیون سازمانی',
+          skills: ['site-rewriter.md', 'conversion-copywriting.md', 'messaging-email.md'],
+          directive: 'لحن استوار، شسته‌رفته و بدون کلیشه‌های اداری برای مدیران و تصمیم‌گیرندگان، تشریح شفاف بازگشت سرمایه (ROI)، شفافیت در پیش‌فاکتورها و پیام‌های تراکنشی تمیز سازمانی.'
+        }
       };
 
-      const toneInstructions = {
-        formal: 'لحن خروجی باید کاملاً رسمی، اداری اما زنده و انسان‌گونه باشد (استفاده قطعی از «است» به‌جای «می‌باشد»، جملات کوتاه و صریح، بدون کلمات عربی فسیل).',
-        conversational: 'لحن خروجی باید صمیمی، محاوره‌ای و گرم باشد (استفاده از افعال گفتاری بومی نظیر میشه، می‌خوام، رو و رعایت دقیق تله هکسره).',
-        cro: 'لحن خروجی بر اساس اصول کپی‌رایتینگ فروش و نرخ تبدیل باشد (تیترهای ارزش‌محور، سنجه‌های عددی ملموس، رفع تردید خریدار و ارقام به تومان).'
+      const toneData = {
+        formal: {
+          title: 'رسمی اما زنده',
+          desc: 'لحن رسمی، محترمانه و زنده سازمانی (استفاده قطعی از «است» به‌جای «می‌باشد»، جملات کوتاه و صریح، بدون کلمات عربی منسوخ و تعارفات فرسوده).'
+        },
+        conversational: {
+          title: 'صمیمی و خودمونی',
+          desc: 'لحن محاوره‌ای، گرم و دوستانه (استفاده طبیعی از افعال گفتاری نظیر میشه، می‌خوام، رو و رعایت دقیق و بی‌نقص قاعده هکسره).'
+        },
+        cro: {
+          title: 'کپی‌رایتینگ فروش',
+          desc: 'کپی‌رایتینگ بهینه‌سازی نرخ تبدیل (تیترهای ارزش‌محور، سنجه‌های ملموس، پاسخ پیش‌دستانه به تردیدهای خریدار، دکمه‌های اقدام شفاف و ارقام به تومان).'
+        }
       };
 
-      const scopeInstructions = {
-        deep: 'تمام متن‌ها، تیترهای هیرو، دکمه‌های اقدام (CTA)، پیام‌های خطا و توضیحات را به صورت ریشه‌ای خرد و بازنویسی کن و خروجی را در یک جدول قبل و بعد تحویل بده.',
-        cleanup: 'استخوان‌بندی و ساختار جملات را حفظ کن؛ فقط افعال فسیل (می‌باشد/می‌گردد)، فیلرها (لازم به ذکر است)، نیم‌فاصله‌ها و ارقام فارسی را اصلاح کن.'
+      const scopeData = {
+        deep: {
+          title: 'بازنویسی عمیق و ریشه‌ای',
+          desc: 'بازنویسی بنیادین: ساختار جملات، تیترهای هیرو، دکمه‌های اقدام (CTA)، پیام‌های وضعیت، خطاها و توضیحات کاملاً بازآفرینی شوند و خروجی در قالب جدول مقایسه‌ای ارائه شود.'
+        },
+        cleanup: {
+          title: 'پالایش املایی و حذف فسیل‌ها',
+          desc: 'پالایش ساختاری: حفظ استخوان‌بندی متن با ریشه‌کنی افعال فسیل (می‌باشد/می‌گردد)، پاکسازی فیلرهای اضافی، اصلاح نیم‌فاصله‌ها و تبدیل ارقام به فارسی.'
+        }
       };
 
-      const prompt = `تمام فایل‌ها و متن‌های موجود در این پروژه را بررسی کن.
-سپس با مراجعه به استانداردهای رسمی وایب‌متن در آدرس ${baseUrl}/llms.txt و مطالعه مهارت‌های تخصصی ${baseUrl}/skills/${domainSkills[wizardState.domain] || 'site-rewriter.md'}، متن‌ها را بازنویسی و اصلاح کن.
+      const currentDomain = domainData[wizardState.domain] || domainData.saas;
+      const currentTone = toneData[wizardState.tone] || toneData.formal;
+      const currentScope = scopeData[wizardState.scope] || scopeData.deep;
+      const currentModel = wizardState.model || 'claude';
 
-دستورالعمل‌های اختصاصی این پروژه:
-۱. انضباط لحن: ${toneInstructions[wizardState.tone]}
-۲. عمق بازنویسی: ${scopeInstructions[wizardState.scope]}
-۳. خط قرمزها: حذف کامل افعال «می‌باشد» و «می‌گردد»، حذف فیلرهای «لازم به ذکر است»، عدم استفاده از خط تیره بلند (ام‌دش)، نیم‌فاصله اجباری و نمایش قیمت‌ها منحصراً به «تومان».
+      const skillsListMd = currentDomain.skills.map(s => `- ${baseUrl}/skills/${s}`).join('\n');
 
-حالا کار را شروع کن و متن‌های اصلاح‌شده را تحویل بده.`;
+      let prompt = '';
+
+      if (currentModel === 'claude') {
+        prompt = `<role>
+تو ارشدترین کپی‌رایتر محصول و طراح تجربه متن مسلط به نظام استانداردهای وایب‌متن هستی.
+</role>
+
+<context>
+پروژه: ${currentDomain.title}
+چارچوب اصلی استانداردهای متن: ${baseUrl}/llms.txt
+مهارت‌های تخصصی الزامی:
+${skillsListMd}
+</context>
+
+<domain_guidelines>
+${currentDomain.directive}
+</domain_guidelines>
+
+<execution_parameters>
+- انضباط لحن: ${currentTone.desc}
+- عمق بازنویسی: ${currentScope.desc}
+</execution_parameters>
+
+<red_lines>
+۱. ممنوعیت قطعی «می‌باشد»، «می‌گردد»، «نمودن» و کلیشه‌های اداری؛ فقط از افعال زنده، کوتاه و روان استفاده شود.
+۲. ممنوعیت مطلق ام‌دش (خط تیره بلند).
+۳. رعایت صددرصدی نیم‌فاصله در نشانه‌های استمرار (می/نمی) و کلمات مرکب.
+۴. نمایش تمامی ارقام با قلم فارسی و تمام مبالغ پولی منحصراً به «تومان».
+۵. حذف کامل فیلرهای هرز زبانی (نظیر «لازم به ذکر است»، «شایان ذکر است») و متون ترجمه‌ای رباتیک.
+</red_lines>
+
+<instructions>
+تمام فایل‌ها و متون موجود در این پروژه را بررسی کن.
+پیش از ایجاد هرگونه تغییر، در یک تگ تفکر کوتاه تمام نقاط ضعف متنی پروژه را ردیابی کن.
+سپس متن‌های بهینه‌شده را به همراه یک جدول مقایسه‌ای شفاف (متن فعلی | متن بهینه‌شده وایب‌متن | دلیل تغییر) ارائه بده.
+</instructions>`;
+      } else if (currentModel === 'gpt4o') {
+        prompt = `# دستورالعمل بهینه‌سازی متن پروژه بر اساس استانداردهای وایب‌متن
+
+## مراجع تخصصی و اسناد معتبر
+- استاندارد مرجع فارسی: ${baseUrl}/llms.txt
+- مهارت‌های تخصصی فراخوانی‌شده:
+${skillsListMd}
+
+## زمینه پروژه و اهداف
+- حوزه فعالیت: ${currentDomain.title}
+- دستورالعمل اختصاصی دامنه: ${currentDomain.directive}
+- استراتژی لحن: ${currentTone.desc}
+- سطح بازنویسی: ${currentScope.desc}
+
+## خط قرمزهای غیرقابل تخطی
+۱. حذف بدون استثنای افعال اداری فسیل («می‌باشد»، «می‌گردد») و جایگزینی با افعال طبیعی («است»، «شد»).
+۲. ممنوعیت مطلق استفاده از کاراکتر ام‌دش (خط تیره بلند).
+۳. رعایت نظام نیم‌فاصله در واژگان مرکب و پیشوندهای فعلی.
+۴. تبدیل تمامی اعداد به رقم فارسی و استفاده انحصاری از واحد «تومان».
+۵. ریشه‌کنی فیلرهای خنثی نظیر «لازم به ذکر است» یا «خاطرنشان می‌سازد».
+
+## نحوه تحویل خروجی
+تمام فایل‌های متنی پروژه را اسکن کن و دو بخش زیر را با دقت بالا ارائه کن:
+۱. جدول ممیزی قبل و بعد (شامل متن قبلی، نسخه بازنویسی‌شده و علت تغییر).
+۲. متون نهایی پاکیزه و آماده جایگذاری در کدهای پروژه.`;
+      } else {
+        // gemini
+        prompt = `[پروتکل هدایت زبانی پروژه: سیستم وایب‌متن برای Gemini 2.0]
+
+منبع گراندینگ و الزامات زبانی:
+بررسی و اعمال بی‌قیدوشرط سند پایه در ${baseUrl}/llms.txt و دستورالعمل‌های تخصصی:
+${skillsListMd}
+
+مشخصات حوزه فعالیت: ${currentDomain.title}
+رهنمود تخصصی این دامنه:
+${currentDomain.directive}
+
+پارامترهای لحن و بازنویسی:
+- شیوه نگارش: ${currentTone.desc}
+- عمق اجرا: ${currentScope.desc}
+
+گاردریل‌های قطعی (Negative Constraints):
+- ممنوعیت مطلق افعال فرسوده «می‌باشد»، «می‌گردد» و ترکیبات متکلف؛ تنها از افعال زنده و انسانی استفاده شود.
+- کاراکتر خط تیره بلند (ام‌دش) اکیداً ممنوع است.
+- املای صحیح و نیم‌فاصله‌های استاندارد با فونت فارسی اعمال شوند.
+- واحد پولی برای تمام قیمت‌ها باید منحصراً «تومان» باشد.
+- تمام اضافات نمایشی، کلیشه‌های ماشینی و مقدمه‌چینی‌های غیرضروری حذف شوند.
+
+جریان اجرا در دو گام:
+گام اول: فایل‌های پروژه را واکاوی کن و عبارات مکانیکی، خطاهای نگارشی و فسیل‌های کلامی را مشخص کن.
+گام دوم: بازنویسی کامل متون را همراه با جدول شفاف مقایسه تحویل بده.`;
+      }
 
       out.innerText = prompt;
     }
